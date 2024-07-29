@@ -1,0 +1,29 @@
+.Navigation {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.Link {
+  font-size: 32px;
+  color: var(--secondary-color);
+  transition: 0.3s;
+}
+
+@media(hover: hover) {
+  .Link:hover {
+    color: var(--primary-color);
+  }
+}
+
+.LinkActive {
+  color: var(--primary-color);
+}
+
+:global(.dark-theme) .Link {
+  color: var(--text-secondary);
+}
+
+:global(.dark-theme) .LinkActive {
+  color: var(--text-primary);
+}

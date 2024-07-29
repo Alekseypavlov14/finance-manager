@@ -6,6 +6,7 @@
   --text-secondary: #707070;
 
   --primary-color: #3067ff;
+  --secondary-color: #abc2ff;
 }
 
 .dark-theme {
@@ -16,4 +17,5 @@
   --text-secondary: #6b6a70;
 
   --primary-color: #3067ff;
+  --secondary-color: #abc2ff;
 }

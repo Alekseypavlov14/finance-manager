@@ -1,24 +1,29 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { StructureLayout } from '@/layouts/StructureLayout'
 
 export const routing = createBrowserRouter([
   {
     path: '/',
-    element: <>Home</>
+    element: <Navigate to='/transactions' />
   },
   {
     path: '/transactions',
-    element: <>Transactions</>
+    element: <StructureLayout>transactions</StructureLayout>
+  },
+  {
+    path: '/create-transaction',
+    element: <>create transaction</>
   },
   {
     path: '/statistics',
-    element: <>Statistics</>
+    element: <StructureLayout>statistics</StructureLayout>
   },
   {
     path: '/settings',
-    element: <>Settings</>
+    element: <StructureLayout>settings</StructureLayout>
   },
   {
     path: '*',
-    element: <>Not Found</>
+    element: <StructureLayout>not found</StructureLayout>
   }
 ])
