@@ -1,18 +1,14 @@
-import { themesLocalStorage } from './storage'
+import { darkThemeToken, defaultThemeToken, lightThemeToken, ThemeToken, userPreferenceToken } from './constants'
+import { themesLocalStorage, updateThemesLocalStorage } from './storage'
+import { updateStylesByState } from './utils/update-styles-by-state'
 import { createStore } from '@oleksii-pavlov/desirable/react'
-
-export type ThemeToken = 'light' | 'dark' | 'user-preference'
-
-export const lightThemeToken: ThemeToken = 'light'
-export const darkThemeToken: ThemeToken = 'dark'
-export const userPreferenceToken: ThemeToken = 'user-preference'
 
 interface ThemesState {
   theme: ThemeToken
 }
 
 const initialState: ThemesState = {
-  theme: themesLocalStorage.getValue() ?? userPreferenceToken
+  theme: themesLocalStorage.getValue() ?? defaultThemeToken
 }
 
 // store
@@ -25,13 +21,10 @@ export const themesStore = createStore(initialState, (state) => ({
 
 // subscriptions
 themesStore.subscribe(updateThemesLocalStorage)
+themesStore.subscribe(updateStylesByState)
 
 // reducers & selector
 export const { updateTheme, setLightTheme, setDarkTheme, setUserPreferenceTheme } = themesStore.reducers
 export const useThemeStore = themesStore.useSelector
 
-// subscription
-function updateThemesLocalStorage() {
-  const themeToken = themesStore.getState().theme
-  themesLocalStorage.setValue(themeToken)
-}
+themesStore.init()

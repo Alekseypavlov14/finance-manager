@@ -1,0 +1,19 @@
+.light-theme {
+  --background: #f8f8f8;
+  --control: #ffffff;
+
+  --text-primary: #222224;
+  --text-secondary: #707070;
+
+  --primary-color: #3067ff;
+}
+
+.dark-theme {
+  --background: #131418;
+  --control: #1e1e20;
+
+  --text-primary: #b3b2b7;
+  --text-secondary: #6b6a70;
+
+  --primary-color: #3067ff;
+}
