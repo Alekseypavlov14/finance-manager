@@ -4,7 +4,7 @@ export const lightThemeToken: ThemeToken = 'light'
 export const darkThemeToken: ThemeToken = 'dark'
 export const userPreferenceToken: ThemeToken = 'user-preference'
 
-export const defaultThemeToken = lightThemeToken
+export const defaultThemeToken = userPreferenceToken
 
 export type ThemeCSSClass = 'light-theme' | 'dark-theme'
 
