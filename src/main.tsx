@@ -1,3 +1,4 @@
+import { AntDesignProvider } from './layouts/AntDesignProvider'
 import { RouterProvider } from 'react-router-dom'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -7,6 +8,8 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={routing} />
+    <AntDesignProvider>
+      <RouterProvider router={routing} />
+    </AntDesignProvider>
   </StrictMode>
 )

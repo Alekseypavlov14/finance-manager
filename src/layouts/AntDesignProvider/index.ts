@@ -1,0 +1,1 @@
+export { AntDesignProvider } from './AntDesignProvider'

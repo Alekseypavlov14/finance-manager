@@ -1,38 +1,36 @@
-@layer {
-  .Headline1 {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  .Headline2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  .Headline3 {
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--text-secondary);
-  }
-  .Headline4 {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text-secondary);
-  }
-  .Headline5 {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text-secondary);
-  }
-  .Headline6 {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text-secondary);
-  }
+.Headline1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.Headline2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.Headline3 {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.Headline4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.Headline5 {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.Headline6 {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
 
-  .Center {
-    width: 100%;
-    flex: 1 1 auto;
-    text-align: center;
-  }
+.Center {
+  width: 100%;
+  flex: 1 1 auto;
+  text-align: center;
 }
