@@ -18,6 +18,7 @@
     "@oleksii-pavlov/desirable": "^1.1.1",
     "@oleksii-pavlov/storages": "^1.0.0",
     "clsx": "^2.1.1",
+    "firebase": "^10.12.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^6.25.1",

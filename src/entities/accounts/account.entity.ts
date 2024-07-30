@@ -1,7 +1,6 @@
-import { Id } from '@/shared/types/id'
+import { Entity } from '@/shared/types/entity'
 
-export interface AccountEntity {
-  id: Id
+export interface AccountEntity extends Entity {
   email: string
   password: string
 }

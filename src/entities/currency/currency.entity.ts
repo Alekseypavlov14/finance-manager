@@ -1,6 +1,5 @@
-import { Id } from '@/shared/types/id'
+import { Entity } from '@/shared/types/entity'
 
-export interface CurrencyEntity {
-  id: Id
+export interface CurrencyEntity extends Entity {
   label: string
 } 
