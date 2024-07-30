@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { StructureLayout } from '@/layouts/StructureLayout'
+import { ProtectedRoute } from '@/app/auth'
 
 export const routing = createBrowserRouter([
   {
@@ -7,16 +8,16 @@ export const routing = createBrowserRouter([
     element: <Navigate to='/statistics' />
   },
   {
-    path: '/transactions',
-    element: <StructureLayout>transactions</StructureLayout>
+    path: '/statistics',
+    element: <StructureLayout>statistics</StructureLayout>
   },
   {
     path: '/create-transaction',
     element: <>create transaction</>
   },
   {
-    path: '/statistics',
-    element: <StructureLayout>statistics</StructureLayout>
+    path: '/transactions',
+    element: <ProtectedRoute><StructureLayout>transactions</StructureLayout></ProtectedRoute>
   },
   {
     path: '/settings',
