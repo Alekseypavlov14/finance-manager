@@ -4,7 +4,7 @@ import { StructureLayout } from '@/layouts/StructureLayout'
 export const routing = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to='/transactions' />
+    element: <Navigate to='/statistics' />
   },
   {
     path: '/transactions',
