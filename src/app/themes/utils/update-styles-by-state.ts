@@ -1,3 +1,4 @@
+import { getThemeByUserPreference } from './get-theme-by-user-preference'
 import { themesStore } from '../store'
 import { 
   darkThemeCSSClass, 
@@ -12,7 +13,7 @@ import {
 const themesCSSClassGetter = {
   [lightThemeToken]: () => lightThemeCSSClass,
   [darkThemeToken]: () => darkThemeCSSClass,
-  [userPreferenceToken]:  getUserPreferenceTheme,
+  [userPreferenceToken]: getUserPreferenceTheme,
 }
 
 export function updateStylesByState() {
@@ -22,12 +23,7 @@ export function updateStylesByState() {
 }
 
 function getUserPreferenceTheme(): ThemeCSSClass {
-  if (
-    window.matchMedia && 
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  ) return darkThemeCSSClass
-
-  return lightThemeCSSClass
+  return themesCSSClassGetter[getThemeByUserPreference()]()
 }
 
 function updateCSSClasses(themeCSSClass: string) {
