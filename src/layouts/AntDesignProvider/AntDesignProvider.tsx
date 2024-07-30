@@ -1,7 +1,6 @@
 import { ConfigProvider } from 'antd'
-import { StyleProvider } from '@ant-design/cssinjs'
-import { ReactNode } from 'react'
 import { useThemeData } from '@/app/themes'
+import { ReactNode } from 'react'
 
 interface AntDesignProviderProps {
   children: ReactNode
@@ -12,9 +11,7 @@ export function AntDesignProvider({ children }: AntDesignProviderProps) {
 
   return (
     <ConfigProvider theme={themeData}>
-      <StyleProvider layer>
-        {children}
-      </StyleProvider>
+      {children}
     </ConfigProvider>
   )
 }
