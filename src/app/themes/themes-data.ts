@@ -6,20 +6,25 @@ import { ThemeConfig } from 'antd'
 export const lightThemeData: ThemeConfig = {
   token: {
     colorPrimary: '#3067ff',
+    colorBorder: '#dad8d8',
   },
   components: {
     Input: {
       colorBgContainer: 'transparent',
-      colorBorder: '#707070',
+      colorBorder: '#dad8d8',
       colorText: '#222224',
       colorTextPlaceholder: '#707070',
-    }
+    },
+    Divider: {
+      colorSplit: '#dad8d8',
+    },
   }
 }
 
 export const darkThemeData: ThemeConfig = {
   token: {
     colorPrimary: '#3067ff',
+    colorBorder: '#3f3e43',
   },
   components: {
     Input: {
@@ -27,7 +32,10 @@ export const darkThemeData: ThemeConfig = {
       colorBorder: '#6b6a70',
       colorText: '#e9e8ea',
       colorTextPlaceholder: '#6b6a70',
-    }
+    },
+    Divider: {
+      colorSplit: '#3f3e43',
+    },
   }
 }
 

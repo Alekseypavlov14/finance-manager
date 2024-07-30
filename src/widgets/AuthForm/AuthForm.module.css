@@ -3,11 +3,20 @@
   max-width: 300px;
   padding: 20px 10px;
   border-radius: 10px;
-  border: 1px solid var(--text-secondary);
+  border: 1px solid var(--border-color);
 
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   background-color: var(--control);
+}
+
+.FormFooter {
+  display: flex;
+  flex-direction: column;
+}
+
+.Divider {
+  margin: 15px 0px 5px 0px;
 }

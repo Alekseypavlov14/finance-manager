@@ -7,6 +7,8 @@
 
   --primary-color: #3067ff;
   --secondary-color: #abc2ff;
+
+  --border-color: #dad8d8;
 }
 
 .dark-theme {
@@ -18,4 +20,6 @@
 
   --primary-color: #3067ff;
   --secondary-color: #abc2ff;
+
+  --border-color: #3f3e43;
 }

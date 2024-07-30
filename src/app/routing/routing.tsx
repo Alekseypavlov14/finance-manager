@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { SignUpPage } from '@/pages/SignUpPage'
 import { LoginPage } from '@/pages/LoginPage'
 
 export const routing = createBrowserRouter([
@@ -23,6 +24,10 @@ export const routing = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/sign-up',
+    element: <SignUpPage />
   },
   {
     path: '*',
