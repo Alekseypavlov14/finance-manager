@@ -1,7 +1,8 @@
-import { updateEmail, updatePassword, useAuthStore } from './auth.store'
-import { ChangeEvent } from 'react'
+import { AuthState, initialValues, validateForm } from './form'
+import { Credentials, login, signUp } from '@/app/auth'
+import { Button, Input } from 'antd'
+import { Form, Formik } from 'formik'
 import { Headline } from '@/shared/components/Headline'
-import { Input } from '@/shared/components/Input'
 import styles from './AuthForm.module.css'
 
 export type AuthFormMode = 'login' | 'sign-up'
@@ -14,14 +15,15 @@ export const loginMode: AuthFormMode = 'login'
 export const signUpMode: AuthFormMode = 'sign-up'
 
 export function AuthForm({ mode }: AuthFormProps) {
-  const email = useAuthStore(state => state.email)
-  const password = useAuthStore(state => state.password)
+  const action = mode === loginMode ? login : signUp
 
-  function updateEmailHandler(e: ChangeEvent<HTMLInputElement>) {
-    updateEmail(e.target.value.trim())
-  }
-  function updatePasswordHandler(e: ChangeEvent<HTMLInputElement>) {
-    updatePassword(e.target.value.trim())
+  function submitFormHandler(data: AuthState) {
+    const credentials: Credentials = {
+      email: data.email,
+      password: data.password,
+    }
+
+    console.log(credentials)
   }
 
   const formTitleText = mode === loginMode 
@@ -29,23 +31,54 @@ export function AuthForm({ mode }: AuthFormProps) {
     : 'Sign up'
 
   return (
-    <div className={styles.AuthForm}>
-      <Headline center level={1}>
-        {formTitleText}
-      </Headline>
+    <Formik
+      initialValues={initialValues}
+      validate={validateForm}
+      onSubmit={submitFormHandler}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+      }) => (
+        <Form 
+          className={styles.AuthForm}
+          onSubmit={handleSubmit}
+        >
+          <Headline center level={1}>
+            {formTitleText}
+          </Headline>
 
-      <Input 
-        value={email} 
-        onInput={updateEmailHandler}
-        placeholder='Email'
-      />
+          <Input 
+            name='email'
+            value={values.email} 
+            onInput={handleChange}
+            onBlur={handleBlur}
+            placeholder='Email'
+            status={errors.email && touched.email ? 'error' : ''}
+          />
 
-      <Input 
-        type='password'
-        placeholder='Password'
-        onInput={updatePasswordHandler}
-        value={password}
-      />
-    </div>
+          <Input 
+            name='password'
+            type='password'
+            placeholder='Password'
+            onInput={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
+            status={errors.password && touched.password ? 'error' : ''}
+          />
+
+          <Button 
+            type='primary'
+            htmlType='submit'
+          >
+            Welcome!
+          </Button>
+        </Form>
+      )}
+    </Formik>
   )
 }
