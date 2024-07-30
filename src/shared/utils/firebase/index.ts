@@ -4,12 +4,12 @@ import { env } from '../env'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: env('DB_API_KEY'),
-  authDomain: env('DB_AUTH_DOMAIN'),
-  projectId: env('DB_PROJECT_ID'),
-  storageBucket: env('DB_STORAGE_BUCKET'),
-  messagingSenderId: env('DB_MESSAGING_SENDER_ID'),
-  appId: env('DB_APP_ID'),
+  apiKey: env('VITE_DB_API_KEY'),
+  authDomain: env('VITE_DB_AUTH_DOMAIN'),
+  projectId: env('VITE_DB_PROJECT_ID'),
+  storageBucket: env('VITE_DB_STORAGE_BUCKET'),
+  messagingSenderId: env('VITE_DB_MESSAGING_SENDER_ID'),
+  appId: env('VITE_DB_APP_ID'),
 }
 
 // Initialize Firebase

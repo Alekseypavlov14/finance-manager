@@ -5,7 +5,6 @@ import { HTTPException } from '@/shared/utils/exception'
 export async function signUp(credentials: Credentials) {
   const accountCandidates = await accountsRepository.getByFilters({
     email: credentials.email,
-    password: credentials.password
   })
 
   const accountExists = accountCandidates.length > 0
