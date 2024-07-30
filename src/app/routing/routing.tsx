@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { LoginPage } from '@/pages/LoginPage'
 
 export const routing = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ export const routing = createBrowserRouter([
   },
   {
     path: '/statistics',
-    element: <StructureLayout>statistics</StructureLayout>
+    element: <StructureLayout><h1>statistics</h1></StructureLayout>
   },
   {
     path: '/create-transaction',
@@ -20,8 +21,8 @@ export const routing = createBrowserRouter([
     element: <ProtectedRoute><StructureLayout>transactions</StructureLayout></ProtectedRoute>
   },
   {
-    path: '/settings',
-    element: <StructureLayout>settings</StructureLayout>
+    path: '/login',
+    element: <LoginPage />
   },
   {
     path: '*',
