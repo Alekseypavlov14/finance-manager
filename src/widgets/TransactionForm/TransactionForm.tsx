@@ -46,6 +46,7 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
       {({
         values,
         errors,
+        touched,
         handleChange,
         handleSubmit,
         setFieldValue,
@@ -73,7 +74,7 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
                 onChange={(value) => setFieldValue('type', value)}
                 options={transactionTypesOptions}
                 className={styles.Control}
-                status={errors.type ? 'error' : ''}
+                status={(errors.type && touched.type) ? 'error' : ''}
               />
             </Space>
 
@@ -88,7 +89,7 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
                 value={values.amount}
                 onChange={value => setFieldValue('amount', value)}
                 className={styles.Control}
-                status={errors.amount ? 'error' : ''}
+                status={(errors.amount && touched.amount) ? 'error' : ''}
               />
             </Space>
 
@@ -101,10 +102,10 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
 
               <Select 
                 value={values.currencyId}
-                onChange={(value) => setFieldValue('currency', value)}
+                onChange={(value) => setFieldValue('currencyId', value)}
                 options={currencyOptions}
                 className={styles.Control}
-                status={errors.currencyId ? 'error' : ''}
+                status={(errors.currencyId && touched.currencyId) ? 'error' : ''}
               />
             </Space>
   
@@ -121,7 +122,7 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
                 placeholder='Description'
                 value={values.description}
                 onChange={handleChange}
-                status={errors.description ? 'error' : ''}
+                status={(errors.description && touched.description) ? 'error' : ''}
               />
             </Space>
   
@@ -138,7 +139,7 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
                 className={styles.Control}
                 suffixIcon={<></>}
                 allowClear={false}
-                status={errors.date ? 'error' : ''}
+                status={(errors.date && touched.date) ? 'error' : ''}
               />
             </Space>
 
