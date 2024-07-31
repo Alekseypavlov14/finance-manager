@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { CreateTransactionPage } from '@/pages/CreateTransactionPage'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
 import { SignUpPage } from '@/pages/SignUpPage'
@@ -15,7 +16,7 @@ export const routing = createBrowserRouter([
   },
   {
     path: '/create-transaction',
-    element: <>create transaction</>
+    element: <CreateTransactionPage />
   },
   {
     path: '/transactions',

@@ -1,6 +1,7 @@
-import { transactionDepositType, TransactionMoney, transactionWithdrawType } from '@/entities/transactions'
+import { transactionDepositType, TransactionMoney, TransactionType, transactionWithdrawType } from '@/entities/transactions'
 import { createFormValidation, isNot, isNotEmptyString, isNumber, isOneOf, multiple, skip } from '@/features/forms'
 import { TransactionClientData } from '@/features/transactions'
+import { Option } from '@/shared/types/option'
 
 export interface TransactionFormData extends Omit<TransactionClientData, 'money'>, TransactionMoney {}
 
@@ -11,6 +12,11 @@ export const initialValues: TransactionFormData = {
   currencyId: null,
   date: Date.now(),
 }
+
+export const transactionTypesOptions: Option<TransactionType>[] = [
+  { label: 'Withdraw', value: transactionWithdrawType },
+  { label: 'Deposit', value: transactionDepositType },
+]
 
 export function mapTransactionFormDataToClientData(formData: TransactionFormData): TransactionClientData {
   return ({
