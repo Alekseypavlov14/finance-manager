@@ -7,17 +7,21 @@ export const lightThemeData: ThemeConfig = {
   token: {
     colorPrimary: '#3067ff',
     colorBorder: '#dad8d8',
+
+    colorBgContainer: 'transparent',
+    colorText: '#222224',
+    colorTextPlaceholder: '#707070',
+    colorBorderBg: '#dad8d8',
+
+    colorSplit: '#dad8d8',
+
+    colorBgElevated: 'ffffff',
   },
   components: {
-    Input: {
-      colorBgContainer: 'transparent',
-      colorBorder: '#dad8d8',
-      colorText: '#222224',
-      colorTextPlaceholder: '#707070',
-    },
-    Divider: {
-      colorSplit: '#dad8d8',
-    },
+    Select: {
+      optionActiveBg: '#e5e5e5',
+      optionSelectedBg: '#e5e5e5',
+    }
   }
 }
 
@@ -25,17 +29,21 @@ export const darkThemeData: ThemeConfig = {
   token: {
     colorPrimary: '#3067ff',
     colorBorder: '#3f3e43',
+
+    colorBgContainer: 'transparent',
+    colorBorderBg: '#6b6a70',
+    colorText: '#e9e8ea',
+    colorTextPlaceholder: '#6b6a70',
+
+    colorSplit: '#3f3e43',
+
+    colorBgElevated: '#1d1d27',
   },
   components: {
-    Input: {
-      colorBgContainer: 'transparent',
-      colorBorder: '#6b6a70',
-      colorText: '#e9e8ea',
-      colorTextPlaceholder: '#6b6a70',
-    },
-    Divider: {
-      colorSplit: '#3f3e43',
-    },
+    Select: {
+      optionActiveBg: '#282834',
+      optionSelectedBg: '#282834',
+    }
   }
 }
 
