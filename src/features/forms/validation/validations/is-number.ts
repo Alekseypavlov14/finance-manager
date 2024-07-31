@@ -1,3 +1,3 @@
-export function isNumber() {
-  return (value: any) => typeof value === 'number' && !isNaN(value)
+export function isNumber(value: any) {
+  return typeof value === 'number' && !isNaN(value)
 }
