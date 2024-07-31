@@ -1,4 +1,5 @@
 import { useValidateCredentials } from '../../hooks/use-validate-credentials'
+import { LoaderScreen } from '@/widgets/LoaderScreen'
 import { ReactNode } from 'react'
 
 interface ProtectedRouteProps {
@@ -9,7 +10,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isValidationSuccessful, isProcessing } = useValidateCredentials()
 
   if (isProcessing) {
-    return <>Validating...</>
+    return <LoaderScreen>Validating...</LoaderScreen>
   }
 
   if (!isValidationSuccessful) {
