@@ -1,6 +1,7 @@
+import { Nullable } from '@/shared/types/nullable'
 import { Id } from '@/shared/types/id'
 
 export interface TransactionMoney {
-  currencyId: Id
+  currencyId: Nullable<Id>
   amount: number
 }
