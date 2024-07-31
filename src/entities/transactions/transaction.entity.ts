@@ -11,3 +11,5 @@ export interface TransactionEntity extends Entity {
   money: TransactionMoney
   date: number
 }
+
+export interface TransactionEntityDTO extends Omit<TransactionEntity, 'id'> {}
