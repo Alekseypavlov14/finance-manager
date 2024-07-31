@@ -8,7 +8,7 @@ export const lightThemeData: ThemeConfig = {
     colorPrimary: '#3067ff',
     colorBorder: '#dad8d8',
 
-    colorBgContainer: 'transparent',
+    colorBgContainer: '#ffffff',
     colorText: '#222224',
     colorTextPlaceholder: '#707070',
     colorBorderBg: '#dad8d8',
@@ -32,7 +32,7 @@ export const darkThemeData: ThemeConfig = {
     colorPrimary: '#3067ff',
     colorBorder: '#3f3e43',
 
-    colorBgContainer: 'transparent',
+    colorBgContainer: '#1d1d27',
     colorBorderBg: '#6b6a70',
     colorText: '#e9e8ea',
     colorTextPlaceholder: '#6b6a70',
