@@ -1,3 +1,4 @@
+import { validationCacheStorage, validationSuccessResult } from './validations.cache'
 import { accountsRepository } from '@/entities/accounts'
 import { credentialsStorage } from './credentials'
 
@@ -14,6 +15,9 @@ export async function validateCredentials(controllers: CredentialsValidatorContr
     onError: controllers.onError || defaultController
   }
 
+  const cachedValidationResult = validationCacheStorage.getValue()
+  if (cachedValidationResult) return normalizedControllers.onSuccess()
+
   const credentials = credentialsStorage.getValue()
   if (!credentials) return normalizedControllers.onError()
 
@@ -25,5 +29,6 @@ export async function validateCredentials(controllers: CredentialsValidatorContr
   const accountExists = accountCandidates.length > 0
   if (!accountExists) return normalizedControllers.onError()
 
+  validationCacheStorage.setValue(validationSuccessResult)
   normalizedControllers.onSuccess()
 }
