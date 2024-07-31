@@ -15,11 +15,11 @@ export async function validateCredentials(controllers: CredentialsValidatorContr
     onError: controllers.onError || defaultController
   }
 
-  const cachedValidationResult = validationCacheStorage.getValue()
-  if (cachedValidationResult) return normalizedControllers.onSuccess()
-
   const credentials = credentialsStorage.getValue()
   if (!credentials) return normalizedControllers.onError()
+
+  const cachedValidationResult = validationCacheStorage.getValue()
+  if (cachedValidationResult) return normalizedControllers.onSuccess()
 
   const accountCandidates = await accountsRepository.getByFilters({
     email: credentials.email,
