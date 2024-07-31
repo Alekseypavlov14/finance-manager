@@ -15,7 +15,7 @@ export const lightThemeData: ThemeConfig = {
 
     colorSplit: '#dad8d8',
 
-    colorBgElevated: 'ffffff',
+    colorBgElevated: '#ffffff',
 
     controlOutline: 'transparent',
   },
@@ -47,6 +47,9 @@ export const darkThemeData: ThemeConfig = {
     Select: {
       optionActiveBg: '#282834',
       optionSelectedBg: '#282834',
+    },
+    DatePicker: {
+      colorTextDisabled: '#6b6a70',
     }
   }
 }

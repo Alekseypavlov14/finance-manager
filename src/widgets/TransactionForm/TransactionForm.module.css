@@ -1,1 +1,19 @@
-/* .TransactionForm {} */
+.TransactionForm {
+  width: 100%;
+}
+
+.Structure {
+  width: 100%;
+}
+
+.FieldBlock {
+  width: 100%;
+}
+
+.Control {
+  width: 100%;
+}
+
+.TextArea {
+  resize: none !important;
+}

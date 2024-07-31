@@ -1,10 +1,12 @@
 import { initialValues, mapTransactionFormDataToClientData, TransactionFormData, transactionTypesOptions, validateTransactionForm } from './form'
-import { DatePicker, Input, InputNumber, Select, Space } from 'antd'
+import { Button, DatePicker, Input, InputNumber, Select, Space } from 'antd'
 import { mapDayjsToMilliseconds } from '@/shared/utils/dayjs'
 import { TransactionClientData } from '@/features/transactions'
 import { Form, Formik } from 'formik'
+import { Headline } from '@/shared/components/Headline'
 import dayjs from 'dayjs'
 import styles from './TransactionForm.module.css'
+import clsx from 'clsx'
 
 export type TransactionFormMode = 'create' | 'edit'
 
@@ -16,10 +18,18 @@ interface TransactionFormProps {
   mode: TransactionFormMode
 }
 
-export function TransactionForm({ onSubmit }: TransactionFormProps) {
+export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
   function submitHandler(formData: TransactionFormData) {
     onSubmit(mapTransactionFormDataToClientData(formData))
   }
+
+  const formTitleText = mode === transactionFormCreateMode
+    ? 'Create Transaction'
+    : 'Edit Transaction'
+
+  const formSubmitButtonText = mode === transactionFormCreateMode
+    ? 'Create!'
+    : 'Edit!'
 
   return (
     <Formik
@@ -29,6 +39,7 @@ export function TransactionForm({ onSubmit }: TransactionFormProps) {
     >
       {({
         values,
+        errors,
         handleChange,
         handleSubmit,
         setFieldValue,
@@ -37,30 +48,84 @@ export function TransactionForm({ onSubmit }: TransactionFormProps) {
           className={styles.TransactionForm}
           onSubmit={handleSubmit}
         >
-          <Space direction='vertical'>
-            <InputNumber
-              value={values.amount}
-              onChange={value => setFieldValue('amount', value)}
-            />
+          <Space 
+            className={styles.Structure} 
+            direction='vertical'
+            size='middle'
+          >
+            <Headline level={2}>{formTitleText}</Headline>
+
+            <Space
+              className={styles.FieldBlock}
+              direction='vertical'
+              size='small'
+            >
+              <Headline level={5}>Transaction type:</Headline>
+
+              <Select 
+                value={values.type}
+                onChange={(value) => setFieldValue('type', value)}
+                options={transactionTypesOptions}
+                className={styles.Control}
+                status={errors.type ? 'error' : ''}
+              />
+            </Space>
+
+            <Space 
+              className={styles.FieldBlock}
+              direction='vertical'
+              size='small'
+            >
+              <Headline level={5}>Amount:</Headline>
+
+              <InputNumber
+                value={values.amount}
+                onChange={value => setFieldValue('amount', value)}
+                className={styles.Control}
+                status={errors.amount ? 'error' : ''}
+              />
+            </Space>
   
-            <Input.TextArea 
-              placeholder='Description'
-              value={values.description}
-              onChange={handleChange}
-            />
+            <Space
+              className={styles.FieldBlock}
+              direction='vertical'
+              size='small'
+            >
+              <Headline level={5}>Description:</Headline>
+
+              <Input.TextArea 
+                name='description'
+                className={clsx(styles.TextArea, styles.Control)}
+                placeholder='Description'
+                value={values.description}
+                onChange={handleChange}
+                status={errors.description ? 'error' : ''}
+              />
+            </Space>
   
-            <Select 
-              value={values.type}
-              onChange={(value) => setFieldValue('type', value)}
-              options={transactionTypesOptions}
-            />
-  
-            <DatePicker
-              value={dayjs(values.date)}
-              onChange={value => setFieldValue('date', mapDayjsToMilliseconds(value))}
-              suffixIcon={<></>}
-              allowClear={false}
-            />
+            <Space 
+              className={styles.FieldBlock}
+              direction='vertical'
+              size='small'
+            >
+              <Headline level={5}>Date:</Headline>
+
+              <DatePicker
+                value={dayjs(values.date)}
+                onChange={value => setFieldValue('date', mapDayjsToMilliseconds(value))}
+                className={styles.Control}
+                suffixIcon={<></>}
+                allowClear={false}
+                status={errors.date ? 'error' : ''}
+              />
+            </Space>
+
+            <Button
+              htmlType='submit'
+              type='primary'
+            >
+              {formSubmitButtonText}
+            </Button>
           </Space>
         </Form>
       )}
