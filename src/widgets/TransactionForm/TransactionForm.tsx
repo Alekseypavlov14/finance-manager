@@ -5,6 +5,7 @@ import { validateTransactionForm } from './utils/validate-transaction-form'
 import { mapDayjsToMilliseconds } from '@/shared/utils/dayjs'
 import { TransactionClientData } from '@/features/transactions'
 import { TransactionFormData } from './types/transaction-form-data'
+import { useCurrencyOptions } from './hooks/use-currency-options'
 import { Form, Formik } from 'formik'
 import { Headline } from '@/shared/components/Headline'
 import dayjs from 'dayjs'
@@ -22,6 +23,8 @@ interface TransactionFormProps {
 }
 
 export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
+  const currencyOptions = useCurrencyOptions()
+
   function submitHandler(formData: TransactionFormData) {
     onSubmit(mapTransactionFormDataToClientData(formData))
   }
@@ -86,6 +89,22 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
                 onChange={value => setFieldValue('amount', value)}
                 className={styles.Control}
                 status={errors.amount ? 'error' : ''}
+              />
+            </Space>
+
+            <Space
+              className={styles.FieldBlock}
+              direction='vertical'
+              size='small'
+            >
+              <Headline level={5}>Currency:</Headline>
+
+              <Select 
+                value={values.currencyId}
+                onChange={(value) => setFieldValue('currency', value)}
+                options={currencyOptions}
+                className={styles.Control}
+                status={errors.currencyId ? 'error' : ''}
               />
             </Space>
   
