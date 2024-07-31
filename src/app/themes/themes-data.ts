@@ -16,6 +16,8 @@ export const lightThemeData: ThemeConfig = {
     colorSplit: '#dad8d8',
 
     colorBgElevated: 'ffffff',
+
+    controlOutline: 'transparent',
   },
   components: {
     Select: {
@@ -38,6 +40,8 @@ export const darkThemeData: ThemeConfig = {
     colorSplit: '#3f3e43',
 
     colorBgElevated: '#1d1d27',
+
+    controlOutline: 'transparent',
   },
   components: {
     Select: {

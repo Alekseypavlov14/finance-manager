@@ -1,1 +1,1 @@
-export { TransactionForm } from './TransactionForm'
+export * from './TransactionForm'
