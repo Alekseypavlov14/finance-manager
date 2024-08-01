@@ -1,0 +1,30 @@
+.TransactionCard {
+  border: 1px solid var(--border-color);
+  background-color: var(--control);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.TransactionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.TransactionMoney {
+  font-weight: 600;
+}
+
+.TransactionDate {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.Deposit .TransactionMoney {
+  color: var(--success-color);
+}
+
+.Withdraw .TransactionMoney {
+  color: var(--text-secondary);
+}
