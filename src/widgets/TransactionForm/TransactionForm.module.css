@@ -18,3 +18,7 @@
 .TextArea {
   resize: none !important;
 }
+
+.SubmitButton {
+  margin-top: 10px;
+}

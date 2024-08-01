@@ -144,8 +144,11 @@ export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
             </Space>
 
             <Button
+              className={styles.SubmitButton}
+              size='large'
               htmlType='submit'
               type='primary'
+              block
             >
               {formSubmitButtonText}
             </Button>
