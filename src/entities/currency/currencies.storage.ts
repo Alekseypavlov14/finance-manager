@@ -8,12 +8,16 @@ export class CurrenciesStorage {
 
   async getValue(): Promise<CurrencyEntity[]> {
     const cachedValue = this.cache.getValue()
-    if (cachedValue) return cachedValue
+    if (cachedValue) return this.sort(cachedValue)
 
     const currencies = await currenciesRepository.get().catch(() => [])
-    this.cache.setValue(currencies)
+    this.cache.setValue(this.sort(currencies))
 
-    return currencies
+    return this.sort(currencies)
+  }
+
+  private sort(items: CurrencyEntity[]): CurrencyEntity[] {
+    return items.map(_ => _).sort((item1, item2) => item1.label.localeCompare(item2.label))
   }
 }
 
