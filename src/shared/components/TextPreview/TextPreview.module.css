@@ -1,0 +1,7 @@
+.TextPreview {
+  color: var(--text-third);
+}
+
+.TextPreviewLink {
+  color: var(--text-secondary);
+}

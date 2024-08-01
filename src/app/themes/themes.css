@@ -10,6 +10,9 @@
   --secondary-color: #abc2ff;
 
   --border-color: #dad8d8;
+
+  --success-color: #399918;
+  --failure-color: #F5004F;
 }
 
 .dark-theme {
@@ -24,4 +27,7 @@
   --secondary-color: #abc2ff;
 
   --border-color: #3f3e43;
+
+  --success-color: #1bb918;
+  --failure-color: #FF4C4C;
 }
