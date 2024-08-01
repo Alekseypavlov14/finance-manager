@@ -16,12 +16,12 @@ export const navigationLinks: NavigationLink[] = [
     key: 'statistics',
   },
   {
-    to: '/create-transaction',
+    to: '/transactions/create',
     icon: <FontAwesomeIcon icon={faSquarePlus} />,
     key: 'create-transaction',
   },
   { 
-    to: '/transactions',
+    to: '/transactions/list',
     icon: <FontAwesomeIcon icon={faListUl} />,
     key: 'transactions',
   },

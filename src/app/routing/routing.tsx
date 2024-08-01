@@ -15,11 +15,11 @@ export const routing = createBrowserRouter([
     element: <StructureLayout><h1>statistics</h1></StructureLayout>
   },
   {
-    path: '/create-transaction',
+    path: '/transactions/create',
     element: <CreateTransactionPage />
   },
   {
-    path: '/transactions',
+    path: '/transactions/list',
     element: <ProtectedRoute><StructureLayout>transactions</StructureLayout></ProtectedRoute>
   },
   {
