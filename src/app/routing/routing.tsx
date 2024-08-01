@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { CreateTransactionPage } from '@/pages/CreateTransactionPage'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { SettingsPage } from '@/pages/SettingsPage'
 import { SignUpPage } from '@/pages/SignUpPage'
 import { LoginPage } from '@/pages/LoginPage'
 
@@ -22,6 +23,7 @@ export const routing = createBrowserRouter([
     path: '/transactions/list',
     element: <ProtectedRoute><StructureLayout>transactions</StructureLayout></ProtectedRoute>
   },
+
   {
     path: '/login',
     element: <LoginPage />
@@ -30,6 +32,12 @@ export const routing = createBrowserRouter([
     path: '/sign-up',
     element: <SignUpPage />
   },
+  
+  {
+    path: '/settings',
+    element: <SettingsPage />
+  },
+
   {
     path: '*',
     element: <StructureLayout>not found</StructureLayout>
