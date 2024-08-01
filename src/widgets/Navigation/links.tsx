@@ -1,6 +1,6 @@
 import { faChartSimple, faListUl } from '@fortawesome/free-solid-svg-icons'
+import { PlusCircleOutlined } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import { ReactNode } from 'react'
 
 export interface NavigationLink {
@@ -17,7 +17,7 @@ export const navigationLinks: NavigationLink[] = [
   },
   {
     to: '/transactions/create',
-    icon: <FontAwesomeIcon icon={faSquarePlus} />,
+    icon: <PlusCircleOutlined />,
     key: 'create-transaction',
   },
   { 
