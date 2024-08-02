@@ -8,7 +8,7 @@ export async function login(credentials: Credentials) {
     password: credentials.password
   })
 
-  if (!account) throw new HTTPException(401)
+  if (!account) throw new HTTPException(404)
 
   credentialsStorage.setValue(credentials)
 }

@@ -41,6 +41,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       .catch(handleHTTPException({
         400: () => errorMessage('The request is incorrect'),
         401: () => errorMessage('Incorrect login or password'),
+        404: () => errorMessage('Incorrect login or password'),
         409: () => errorMessage('This email is already registered'),
         500: () => errorMessage('Sorry, try again later'),
         [defaultHandler]: () => errorMessage('Sorry, try again later'),
