@@ -1,0 +1,7 @@
+.SettingsSectionTitle {
+  font-weight: 600;
+}
+
+.Dangerous {
+  color: var(--failure-color);
+}
