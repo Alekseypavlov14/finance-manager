@@ -1,5 +1,5 @@
 import { sortTransactionsByDescendingDate, useAccountTransactions } from '@/entities/transactions'
-import { TransactionList } from '@/widgets/TransactionList'
+import { transactionGroupTypeWeeks, TransactionList } from '@/widgets/TransactionList'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
 import { LoaderScreen } from '@/widgets/LoaderScreen'
@@ -19,7 +19,10 @@ export function TransactionListPage() {
           <Container fullHeight>
             {isLoading && <LoaderScreen />}
 
-            <TransactionList transactions={sortedTransactions} />
+            <TransactionList 
+              transactions={sortedTransactions} 
+              groupingType={transactionGroupTypeWeeks}
+            />
           </Container>
         </StructureLayout>
       </Page>

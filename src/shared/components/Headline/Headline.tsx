@@ -13,9 +13,10 @@ interface HeadlineProps extends HTMLAttributes<HTMLElement> {
 export function Headline({ 
   level = 1,
   center, 
+  className,
   ...props
 }: HeadlineProps) {
-  const classNames = clsx(mapLevelToHeadlineClassName[level], center && styles.Center)
+  const classNames = clsx(mapLevelToHeadlineClassName[level], center && styles.Center, className)
   
   const headlineProps = {
     className: classNames,

@@ -3,9 +3,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
-.TransactionList > * {
+.TransactionsGroup {
   width: 100%;
+}
+
+.TransactionsGroupLabel {
+  margin-bottom: 5px;
+}
+
+.TransactionsGroupContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
