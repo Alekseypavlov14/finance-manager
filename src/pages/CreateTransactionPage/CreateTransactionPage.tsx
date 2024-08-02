@@ -11,13 +11,13 @@ import { Page } from '@/shared/components/Page'
 import styles from './CreateTransactionPage.module.css'
 
 export function CreateTransactionPage() {
-  const { context, successMessage, errorMessage } = useNotifications()
+  const { successMessage, errorMessage } = useNotifications()
   const { navigateTransactionsPage } = useNavigation()
 
   function submitHandler(transactionClientData: TransactionClientData) {
-    createTransaction(transactionClientData)
-      .then(() => successMessage('Transaction is created!'))
+    return createTransaction(transactionClientData)
       .then(navigateTransactionsPage)
+      .then(() => successMessage('Transaction is created!'))
       .catch(handleHTTPException({
         401: () => errorMessage('You are not authorized'),
         500: () => errorMessage('Something went wrong, try later'),
@@ -30,8 +30,6 @@ export function CreateTransactionPage() {
       <Page className={styles.CreateTransactionPage}>
         <StructureLayout>
           <Container>
-            {context}
-
             <TransactionForm 
               mode={transactionFormCreateMode}
               onSubmit={submitHandler}

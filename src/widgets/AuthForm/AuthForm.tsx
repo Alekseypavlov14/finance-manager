@@ -1,9 +1,11 @@
 import { AuthState, initialValues, validateForm } from './form'
-import { Button, Divider, Input, message } from 'antd'
+import { Form, Formik, FormikHelpers } from 'formik'
 import { Credentials, login, signUp } from '@/app/auth'
+import { Button, Divider, Input } from 'antd'
 import { handleHTTPException } from '@/shared/utils/exception'
+import { useNotifications } from '@/features/notifications'
+import { defaultHandler } from '@oleksii-pavlov/error-handling'
 import { useNavigation } from '@/app/routing'
-import { Form, Formik } from 'formik'
 import { Headline } from '@/shared/components/Headline'
 import { Link } from 'react-router-dom'
 import styles from './AuthForm.module.css'
@@ -18,12 +20,16 @@ export const loginMode: AuthFormMode = 'login'
 export const signUpMode: AuthFormMode = 'sign-up'
 
 export function AuthForm({ mode }: AuthFormProps) {
-  const [messageApi, contextHolder] = message.useMessage()
+  const { successMessage, errorMessage } = useNotifications()
   
   const action = mode === loginMode ? login : signUp
   const { navigateHomePage } = useNavigation()
 
-  async function submitFormHandler(data: AuthState) {
+  const successMessageText = mode === loginMode 
+    ? 'You are logged in' 
+    : 'You are signed in'
+
+  async function submitFormHandler(data: AuthState, { resetForm }: FormikHelpers<AuthState>) {
     const credentials: Credentials = {
       email: data.email,
       password: data.password,
@@ -31,12 +37,16 @@ export function AuthForm({ mode }: AuthFormProps) {
 
     await action(credentials)
       .then(navigateHomePage)
+      .then(() => successMessage(successMessageText))
       .catch(handleHTTPException({
-        400: () => messageApi.error('The request is incorrect'),
-        401: () => messageApi.error('Incorrect login or password'),
-        409: () => messageApi.error('This email is already registered'),
-        500: () => messageApi.error('Sorry, try again later'),
+        400: () => errorMessage('The request is incorrect'),
+        401: () => errorMessage('Incorrect login or password'),
+        409: () => errorMessage('This email is already registered'),
+        500: () => errorMessage('Sorry, try again later'),
+        [defaultHandler]: () => errorMessage('Sorry, try again later'),
       }))
+
+    resetForm()
   }
 
   const formTitleText = mode === loginMode 
@@ -69,8 +79,6 @@ export function AuthForm({ mode }: AuthFormProps) {
           className={styles.AuthForm}
           onSubmit={handleSubmit}
         >
-          {contextHolder}
-
           <Headline center level={2}>
             {formTitleText}
           </Headline>
