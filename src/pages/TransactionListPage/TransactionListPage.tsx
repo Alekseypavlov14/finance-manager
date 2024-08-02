@@ -1,4 +1,4 @@
-import { useAccountTransactions } from '@/entities/transactions'
+import { sortTransactionsByDescendingDate, useAccountTransactions } from '@/entities/transactions'
 import { TransactionList } from '@/widgets/TransactionList'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
@@ -9,6 +9,8 @@ import styles from './TransactionListPage.module.css'
 
 export function TransactionListPage() {
   const { transactions, isLoading } = useAccountTransactions()
+  
+  const sortedTransactions = sortTransactionsByDescendingDate(transactions)
 
   return (
     <ProtectedRoute>
@@ -17,7 +19,7 @@ export function TransactionListPage() {
           <Container fullHeight>
             {isLoading && <LoaderScreen />}
 
-            <TransactionList transactions={transactions} />
+            <TransactionList transactions={sortedTransactions} />
           </Container>
         </StructureLayout>
       </Page>
