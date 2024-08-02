@@ -1,5 +1,5 @@
 import { validationCacheStorage, validationSuccessResult } from './validations.cache'
-import { accountsRepository } from '@/entities/accounts'
+import { getAccountByFilters } from '@/entities/accounts'
 import { credentialsStorage } from './credentials'
 
 export interface CredentialsValidatorControllers {
@@ -21,13 +21,12 @@ export async function validateCredentials(controllers: CredentialsValidatorContr
   const cachedValidationResult = validationCacheStorage.getValue()
   if (cachedValidationResult) return normalizedControllers.onSuccess()
 
-  const accountCandidates = await accountsRepository.getByFilters({
+  const accountCandidate = await getAccountByFilters({
     email: credentials.email,
     password: credentials.password
   })
 
-  const accountExists = accountCandidates.length > 0
-  if (!accountExists) return normalizedControllers.onError()
+  if (!accountCandidate) return normalizedControllers.onError()
 
   validationCacheStorage.setValue(validationSuccessResult)
   normalizedControllers.onSuccess()
