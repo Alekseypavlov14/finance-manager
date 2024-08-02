@@ -1,5 +1,5 @@
 import { transactionDepositType, TransactionType, transactionWithdrawType } from '@/entities/transactions'
-import { formatFullDate } from '@/shared/utils/date-time'
+import { formatFullDateWithoutYear } from '@/shared/utils/date-time'
 import { TextPreview } from '@/shared/components/TextPreview'
 import styles from './TransactionCard.module.css'
 import clsx from 'clsx'
@@ -37,7 +37,7 @@ export function TransactionCard({
         </div>
 
         <div className={styles.TransactionDate}>
-          {formatFullDate(date)}
+          {formatFullDateWithoutYear(date)}
         </div>
       </div>
 
