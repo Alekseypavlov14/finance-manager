@@ -18,6 +18,8 @@ export const lightThemeData: ThemeConfig = {
     colorBgElevated: '#ffffff',
 
     controlOutline: 'transparent',
+
+    controlHeight: 36,
   },
   components: {
     Select: {
@@ -43,6 +45,8 @@ export const darkThemeData: ThemeConfig = {
     colorBgElevated: '#1d1d27',
 
     controlOutline: 'transparent',
+
+    controlHeight: 36,
   },
   components: {
     Select: {
