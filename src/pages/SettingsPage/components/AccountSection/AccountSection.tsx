@@ -1,11 +1,33 @@
 import { SettingsSection, SettingsSectionContent, SettingsSectionTitle } from '@/widgets/SettingsSection'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { deleteAccount, signOut } from '@/app/auth'
+import { handleHTTPException } from '@/shared/utils/exception'
 import { Popconfirm, Button } from 'antd'
+import { useNotifications } from '@/features/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigation } from '@/app/routing'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 export function AccountSection() {
+  const { navigateLoginPage, navigateSignUpPage } = useNavigation()
+  const { errorMessage } = useNotifications()
+
+  function signOutHandler() {
+    signOut()
+    navigateLoginPage()
+  }
+
+  function deleteAccountHandler() {
+    deleteAccount()
+      .catch(handleHTTPException({
+        401: () => errorMessage('You are not authorized'),
+        404: () => errorMessage('Your account is not found'),
+        500: () => errorMessage('Something went wrong'),
+      }))
+      .then(signOut)
+      .then(navigateSignUpPage)
+  }
+
   return (
     <SettingsSection>
       <SettingsSectionTitle>Account</SettingsSectionTitle>
@@ -13,7 +35,7 @@ export function AccountSection() {
       <SettingsSectionContent>
         <Popconfirm
           title='Are you sure to sign out?'
-          onConfirm={signOut}
+          onConfirm={signOutHandler}
           okText='Yes'
           cancelText='No'
         >
@@ -26,7 +48,7 @@ export function AccountSection() {
 
         <Popconfirm
           title='Are you sure to delete account?'
-          onConfirm={deleteAccount}
+          onConfirm={deleteAccountHandler}
           okText='Yes'
           cancelText='No'
         >
