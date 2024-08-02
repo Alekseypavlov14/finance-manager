@@ -32,7 +32,6 @@ export const routing = createBrowserRouter([
     path: '/sign-up',
     element: <SignUpPage />
   },
-  
   {
     path: '/settings',
     element: <SettingsPage />
