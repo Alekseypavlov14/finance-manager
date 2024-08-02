@@ -1,1 +1,1 @@
-export type TransactionGroupType = 'weeks' | 'none'
+export type TransactionGroupType = 'weeks' | 'months' | 'none'
