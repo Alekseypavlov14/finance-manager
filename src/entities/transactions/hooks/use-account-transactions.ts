@@ -2,12 +2,24 @@ import { accountTransactionsStorage } from '../account-transactions.storage'
 import { useEffect, useState } from 'react'
 import { TransactionEntity } from '../transaction.entity'
 
-export function useAccountTransactions(): TransactionEntity[] {
+interface UseAccountTransactionsResult {
+  transactions: TransactionEntity[]
+  isLoading: boolean
+}
+
+export function useAccountTransactions(): UseAccountTransactionsResult {
   const [transactions, setTransactions] = useState<TransactionEntity[]>([])
+  const [isLoading, setLoading] = useState(true)
+
+  function stopLoading() {
+    setLoading(false)
+  }
 
   useEffect(() => {
-    accountTransactionsStorage.getValue().then(setTransactions)
+    accountTransactionsStorage.getValue()
+      .then(setTransactions)
+      .then(stopLoading)
   }, [])
 
-  return transactions
+  return { transactions, isLoading }
 }

@@ -1,18 +1,17 @@
-import { LoadingOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react'
-import { Spin } from 'antd'
-import styles from './LoaderScreen.module.css'
+import { Loader } from '@/shared/components/Loader'
+import { Center } from '@/shared/components/Center'
 
 interface LoaderScreenProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
 export function LoaderScreen({ children }: LoaderScreenProps) {
   return (
-    <div className={styles.LoaderScreen}>
-      <Spin indicator={<LoadingOutlined spin />} />
+    <Center>
+      <Loader />
       
       {children}
-    </div>
+    </Center>
   )
 }

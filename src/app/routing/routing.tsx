@@ -37,7 +37,6 @@ export const routing = createBrowserRouter([
     path: '/settings',
     element: <SettingsPage />
   },
-
   {
     path: '*',
     element: <StructureLayout>not found</StructureLayout>
