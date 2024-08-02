@@ -1,12 +1,12 @@
 import { Button, DatePicker, Input, InputNumber, Select, Space } from 'antd'
 import { initialValues, transactionTypesOptions } from './constants'
 import { mapTransactionFormDataToClientData } from './utils/map-transaction-form-data-to-client-data'
+import { Form, Formik, FormikHelpers } from 'formik'
 import { validateTransactionForm } from './utils/validate-transaction-form'
 import { mapDayjsToMilliseconds } from '@/shared/utils/dayjs'
 import { TransactionClientData } from '@/features/transactions'
 import { TransactionFormData } from './types/transaction-form-data'
 import { useCurrencyOptions } from './hooks/use-currency-options'
-import { Form, Formik } from 'formik'
 import { Headline } from '@/shared/components/Headline'
 import dayjs from 'dayjs'
 import styles from './TransactionForm.module.css'
@@ -18,15 +18,16 @@ export const transactionFormCreateMode: TransactionFormMode = 'create'
 export const transactionFormEditMode: TransactionFormMode = 'edit'
 
 interface TransactionFormProps {
-  onSubmit: (data: TransactionClientData) => void
+  onSubmit: (data: TransactionClientData) => void | Promise<void>
   mode: TransactionFormMode
 }
 
 export function TransactionForm({ mode, onSubmit }: TransactionFormProps) {
   const currencyOptions = useCurrencyOptions()
 
-  function submitHandler(formData: TransactionFormData) {
-    onSubmit(mapTransactionFormDataToClientData(formData))
+  async function submitHandler(formData: TransactionFormData, { resetForm }: FormikHelpers<TransactionFormData>) {
+    await onSubmit(mapTransactionFormDataToClientData(formData))
+    resetForm()
   }
 
   const formTitleText = mode === transactionFormCreateMode
