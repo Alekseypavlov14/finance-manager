@@ -1,7 +1,7 @@
 import { darkThemeToken, lightThemeToken, userPreferenceToken } from './constants'
 import { getThemeByUserPreference } from './utils/get-theme-by-user-preference'
+import { ThemeConfig, theme } from 'antd'
 import { isLightTheme } from './utils/is-light-theme'
-import { ThemeConfig } from 'antd'
 
 export const lightThemeData: ThemeConfig = {
   token: {
@@ -28,6 +28,7 @@ export const lightThemeData: ThemeConfig = {
 }
 
 export const darkThemeData: ThemeConfig = {
+  algorithm: theme.darkAlgorithm,
   token: {
     colorPrimary: '#3067ff',
     colorBorder: '#3f3e43',
