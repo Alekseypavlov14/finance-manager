@@ -3,6 +3,7 @@ export type { TransactionMoney } from './types/transaction-money'
 export type { TransactionType } from './types/transaction-type'
 
 export { accountTransactionsStorage, AccountTransactionsStorage } from './account-transactions.storage'
+export { useAccountTransactions } from './hooks/use-account-transactions'
 export { transactionRepository } from './transactions.repository'
 
 export * from './constants'
