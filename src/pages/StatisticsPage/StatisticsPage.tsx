@@ -2,6 +2,7 @@ import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarCh
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { formatAsMoney } from '@/entities/transactions'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -22,14 +23,14 @@ export function StatisticsPage() {
               </Headline>
     
               <CircleChart 
-                width={220}
+                width={360}
                 height={130}
                 data={currenciesBalanceData} 
                 dataKey='amountInUSD' 
                 align='right'
                 verticalAlign='middle'
                 layout='vertical'
-                formatLabel={(entry) => entry.currency}
+                formatLabel={(entry) => `${entry.currency} (${entry.amount} ${entry.currency} - ${formatAsMoney(entry.amountInUSD)} ${USD_CURRENCY_CODE})`}
               />
             </div>
 
