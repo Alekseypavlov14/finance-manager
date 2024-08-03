@@ -1,4 +1,5 @@
 import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart } from '@/features/statistics'
+import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
 import { Container } from '@/shared/components/Container'
@@ -45,6 +46,7 @@ export function StatisticsPage() {
                 height={200}
                 color='#E72929'
                 legendHeight={20}
+                tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}
               />
             </div>
           </Container>

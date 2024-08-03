@@ -13,6 +13,8 @@ interface BarChartProps<T> {
   legendHeight?: number
 
   ticksAngle?: number
+
+  tooltipValueFormatter?: (value: string) => string
 }
 
 export function BarChart<T>({
@@ -23,6 +25,8 @@ export function BarChart<T>({
   height,
   color,
   legendHeight = 0,
+  ticksAngle,
+  tooltipValueFormatter,
 }: BarChartProps<T>) {
   return (
     <ResponsiveContainer height={height + legendHeight}>
@@ -34,6 +38,7 @@ export function BarChart<T>({
         <XAxis 
           dataKey={labelKey as DataKey<T>} 
           height={legendHeight}
+          angle={ticksAngle}
         />
   
         <Bar 
@@ -41,7 +46,7 @@ export function BarChart<T>({
           fill={color}
         />
   
-        <Tooltip />
+        <Tooltip formatter={tooltipValueFormatter}/>
       </RechartsBarChart>
     </ResponsiveContainer>
   )
