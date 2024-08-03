@@ -1,4 +1,4 @@
-import { TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
+import { roundAsMoney, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
 import { formatShortWeek } from '@/shared/utils/date-time'
 import { CurrencyEntity } from '@/entities/currency'
 import { ExpensesEntry } from './data-type'
@@ -31,7 +31,7 @@ export function getExpensesChartData({ transactions, currencies, rates, dateRang
     const groupDate = dateRange.min + index * interval
 
     const transactionsAmountInUSD = relatedTransactions.map(transaction => getTransactionAmountInUSD(transaction, currencies, rates))
-    const totalGroupAmountInUSD = sum(...transactionsAmountInUSD)
+    const totalGroupAmountInUSD = roundAsMoney(sum(...transactionsAmountInUSD))
 
     const date = formatShortWeek(groupDate)
 

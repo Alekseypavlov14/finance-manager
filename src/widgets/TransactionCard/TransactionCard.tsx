@@ -1,4 +1,4 @@
-import { transactionDepositType, TransactionType, transactionWithdrawType } from '@/entities/transactions'
+import { formatAsMoney, transactionDepositType, TransactionType, transactionWithdrawType } from '@/entities/transactions'
 import { formatFullDateWithoutYear } from '@/shared/utils/date-time'
 import { TextPreview } from '@/shared/components/TextPreview'
 import styles from './TransactionCard.module.css'
@@ -33,7 +33,7 @@ export function TransactionCard({
     <div className={clsx(styles.TransactionCard, transactionModifierClass)}>
       <div className={styles.TransactionHeader}>
         <div className={styles.TransactionMoney}>
-          {transactionSign}{amount.toFixed(2)} {currency}
+          {transactionSign}{formatAsMoney(amount)} {currency}
         </div>
 
         <div className={styles.TransactionDate}>
