@@ -1,7 +1,7 @@
 import { DAY_IN_MILLISECONDS, DAYS_PER_WEEK } from '@/shared/constants'
 import { useAccountTransactions } from '@/entities/transactions'
-import { useEffect, useState } from 'react'
 import { getExpensesChartData } from './get-data'
+import { useEffect, useState } from 'react'
 import { useCurrencies } from '@/entities/currency'
 import { ExpensesEntry } from './data-type'
 import { DateTime } from '@oleksii-pavlov/date-time'
@@ -20,8 +20,8 @@ export function useExpensesChartData(): ExpensesEntry[] {
       currencies,
       rates,
       dateRange: {
-        min: new DateTime().normalizeDate().getDateTimeBefore({ months: 2 }).getTimeInMilliseconds(),
-        max: new DateTime().normalizeDate().getDateTimeAfter({ days: 1 }).getTimeInMilliseconds()
+        min: new DateTime().normalizeDate().getFirstDayOfWeek().getDateTimeAfter({ days: 1 }).getDateTimeBefore({ days: DAYS_PER_WEEK * 8 }).getTimeInMilliseconds(),
+        max: new DateTime().normalizeDate().getLastDayOfWeek().getDateTimeAfter({ days: 1 }).getTimeInMilliseconds()
       },
       interval: DAYS_PER_WEEK * DAY_IN_MILLISECONDS
     }))

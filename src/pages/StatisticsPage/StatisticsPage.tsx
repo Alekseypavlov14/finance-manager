@@ -1,4 +1,4 @@
-import { useCurrenciesBalanceChartData, CircleChart } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart } from '@/features/statistics'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
 import { Container } from '@/shared/components/Container'
@@ -8,6 +8,7 @@ import styles from './StatisticsPage.module.css'
 
 export function StatisticsPage() {
   const currenciesBalanceData = useCurrenciesBalanceChartData()
+  const expensesData = useExpensesChartData()
 
   return (
     <ProtectedRoute>
@@ -20,19 +21,30 @@ export function StatisticsPage() {
               </Headline>
     
               <CircleChart 
+                width={220}
+                height={130}
                 data={currenciesBalanceData} 
                 dataKey='amountInUSD' 
-    
-                width={210}
-                height={130}
-                cx={60}
-                cy={60}
-                
                 align='right'
                 verticalAlign='middle'
                 layout='vertical'
-    
                 formatLabel={(entry) => entry.currency}
+              />
+            </div>
+
+            <div className={styles.StatisticsBlock}>
+              <Headline level={4} className={styles.Headline}>
+                Your expenses
+              </Headline>
+    
+              <BarChart 
+                data={expensesData} 
+                dataKey='amount' 
+                labelKey='date'
+                width={300}
+                height={200}
+                color='#E72929'
+                legendHeight={20}
               />
             </div>
           </Container>

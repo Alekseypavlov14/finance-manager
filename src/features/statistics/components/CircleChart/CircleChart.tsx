@@ -7,10 +7,8 @@ import { colors } from '../../constants'
 interface CircleChartProps<T> {
   data: T[]
   dataKey: keyof T
-  cx?: number
-  cy?: number
-  width?: number
-  height?: number
+  width: number
+  height: number
   align?: HorizontalAlignmentType
   verticalAlign?: VerticalAlignmentType
   layout?: LayoutType
@@ -20,10 +18,8 @@ interface CircleChartProps<T> {
 export function CircleChart<T>({ 
   data, 
   dataKey,
-  cx = 75,
-  cy = 75,
-  width = 150,
-  height = 150, 
+  width,
+  height, 
   align,
   verticalAlign,
   layout,
@@ -33,11 +29,10 @@ export function CircleChart<T>({
     <PieChart width={width} height={height}>
       <Pie
         data={data}
-        cx={cx}
-        cy={cy}
+        cx={height / 2}
+        cy={height / 2}
         innerRadius={45}
         outerRadius={60}
-        fill="#8884d8"
         paddingAngle={10}
         dataKey={dataKey as DataKey<T>}
         startAngle={90}

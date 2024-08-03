@@ -1,4 +1,4 @@
 export interface ExpensesEntry {
-  date: number
+  date: string
   amount: number
 }

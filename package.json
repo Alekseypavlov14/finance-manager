@@ -32,7 +32,7 @@
     "react-dom": "^18.3.1",
     "react-router": "^6.25.1",
     "react-router-dom": "^6.25.1",
-    "recharts": "^2.12.7"
+    "recharts": "^2.13.0-alpha.4"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
