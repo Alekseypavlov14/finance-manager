@@ -1,6 +1,7 @@
-import { Formatter, HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent'
+import { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent'
 import { Cell, Legend, Pie, PieChart } from 'recharts'
 import { DataKey, LayoutType } from 'recharts/types/util/types'
+import { ReactNode } from 'react'
 import { colors } from '../../constants'
 
 interface CircleChartProps<T> {
@@ -13,7 +14,7 @@ interface CircleChartProps<T> {
   align?: HorizontalAlignmentType
   verticalAlign?: VerticalAlignmentType
   layout?: LayoutType
-  formatLabel?: Formatter
+  formatLabel?: (entry: T, index: number) => ReactNode
 }
 
 export function CircleChart<T>({ 
@@ -26,7 +27,7 @@ export function CircleChart<T>({
   align,
   verticalAlign,
   layout,
-  formatLabel,
+  formatLabel = (_: T, index: number) => index,
 }: CircleChartProps<T>) {
   return (
     <PieChart width={width} height={height}>
@@ -54,7 +55,7 @@ export function CircleChart<T>({
       <Legend 
         align={align} 
         verticalAlign={verticalAlign}
-        formatter={formatLabel}
+        formatter={(_, __, index) => formatLabel(data[index], index)}
         layout={layout}
       />
     </PieChart>
