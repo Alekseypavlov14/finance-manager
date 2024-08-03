@@ -23,7 +23,6 @@ export const routing = createBrowserRouter([
     path: '/transactions/list',
     element: <TransactionListPage />
   },
-
   {
     path: '/login',
     element: <LoginPage />
