@@ -7,7 +7,7 @@ import { Page } from '@/shared/components/Page'
 import styles from './StatisticsPage.module.css'
 
 export function StatisticsPage() {
-  const data = useCurrenciesBalanceChartData()
+  const currenciesBalanceData = useCurrenciesBalanceChartData()
 
   return (
     <ProtectedRoute>
@@ -20,7 +20,7 @@ export function StatisticsPage() {
               </Headline>
     
               <CircleChart 
-                data={data} 
+                data={currenciesBalanceData} 
                 dataKey='amountInUSD' 
     
                 width={210}
@@ -32,7 +32,7 @@ export function StatisticsPage() {
                 verticalAlign='middle'
                 layout='vertical'
     
-                formatLabel={(_, __, index) => data[index].currency}
+                formatLabel={(entry) => entry.currency}
               />
             </div>
           </Container>
