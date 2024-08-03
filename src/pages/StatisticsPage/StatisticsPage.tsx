@@ -24,7 +24,7 @@ export function StatisticsPage() {
     
               <CircleChart 
                 width={360}
-                height={130}
+                height={135}
                 data={currenciesBalanceData} 
                 dataKey='amountInUSD' 
                 align='right'
