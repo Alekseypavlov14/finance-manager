@@ -1,1 +1,16 @@
-/* .StatisticsPage {} */
+.Container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* .StatisticsBlock {} */
+
+.Headline {
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
