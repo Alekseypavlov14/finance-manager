@@ -12,3 +12,6 @@ export const lightThemeCSSClass: ThemeCSSClass = 'light-theme'
 export const darkThemeCSSClass: ThemeCSSClass = 'dark-theme'
 
 export const themesCSSClasses: ThemeCSSClass[] = [lightThemeCSSClass, darkThemeCSSClass]
+
+export const successColor = 'var(--success-color)'
+export const failureColor = 'var(--failure-color)'

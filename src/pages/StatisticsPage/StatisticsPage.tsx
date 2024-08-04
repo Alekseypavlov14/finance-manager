@@ -2,6 +2,7 @@ import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarCh
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { failureColor } from '@/app/themes'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -46,7 +47,7 @@ export function StatisticsPage() {
                 labelKey='date'
                 width={300}
                 height={200}
-                color='#E72929'
+                color={failureColor}
                 legendHeight={20}
                 tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}
                 shownTicks={getBalancedShownTicks(expensesData.length, 3)}

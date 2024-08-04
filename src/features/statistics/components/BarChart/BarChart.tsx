@@ -1,5 +1,6 @@
 import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 import { DataKey } from 'recharts/types/util/types'
+import styles from './BarChart.module.css'
 
 interface BarChartProps<T> {
   data: T[]
@@ -55,7 +56,11 @@ export function BarChart<T>({
           fill={color}
         />
   
-        <Tooltip formatter={tooltipValueFormatter}/>
+        <Tooltip 
+          formatter={tooltipValueFormatter}
+          wrapperClassName={styles.TooltipWrapper}
+          cursor={{ opacity: '0.4' }}
+        />
       </RechartsBarChart>
     </ResponsiveContainer>
   )

@@ -1,0 +1,7 @@
+.TooltipWrapper {
+  border-radius: 5px !important;
+  background-color: var(--control) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 0 7px 3px rgba(0, 0, 0, 0.2) !important;
+}
