@@ -1,8 +1,7 @@
-import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel } from '@/features/statistics'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
-import { formatAsMoney } from '@/entities/transactions'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -30,7 +29,7 @@ export function StatisticsPage() {
                 align='right'
                 verticalAlign='middle'
                 layout='vertical'
-                formatLabel={(entry) => `${entry.currency} (${entry.amount} ${entry.currency} - ${formatAsMoney(entry.amountInUSD)} ${USD_CURRENCY_CODE})`}
+                formatLabel={formatCurrenciesBalanceLabel}
               />
             </div>
 
