@@ -5,3 +5,5 @@ export { BarChart } from './components/BarChart'
 
 export * from './charts/currencies-balance'
 export * from './charts/expenses'
+
+export { getBalancedShownTicks } from './utils/get-balanced-shown-ticks'

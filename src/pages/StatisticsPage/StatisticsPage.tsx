@@ -1,4 +1,4 @@
-import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel, ChartContainer } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel, ChartContainer, getBalancedShownTicks } from '@/features/statistics'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
@@ -49,6 +49,7 @@ export function StatisticsPage() {
                 color='#E72929'
                 legendHeight={20}
                 tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}
+                shownTicks={getBalancedShownTicks(expensesData.length, 3)}
               />
             </div>
           </Container>
