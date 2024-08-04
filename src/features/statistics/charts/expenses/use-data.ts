@@ -20,8 +20,19 @@ export function useExpensesChartData(): ExpensesEntry[] {
       currencies,
       rates,
       dateRange: {
-        min: new DateTime().normalizeDate().getFirstDayOfWeek().getDateTimeAfter({ days: 1 }).getDateTimeBefore({ days: DAYS_PER_WEEK * 8 }).getTimeInMilliseconds(),
-        max: new DateTime().normalizeDate().getLastDayOfWeek().getDateTimeAfter({ days: 1 }).getTimeInMilliseconds()
+        min: new DateTime()
+          .normalizeDate()
+          .getDateTimeBefore({ days: new DateTime().getDate().getDay() === 0 ? 1 : 0 })
+          .getFirstDayOfWeek()
+          .getDateTimeAfter({ days: 1 })
+          .getDateTimeBefore({ days: DAYS_PER_WEEK * 8 })
+          .getTimeInMilliseconds(),
+        max: new DateTime()
+          .normalizeDate()
+          .getDateTimeBefore({ days: new DateTime().getDate().getDay() === 0 ? 1 : 0 })
+          .getLastDayOfWeek()
+          .getDateTimeAfter({ days: 1 })
+          .getTimeInMilliseconds()
       },
       interval: DAYS_PER_WEEK * DAY_IN_MILLISECONDS
     }))

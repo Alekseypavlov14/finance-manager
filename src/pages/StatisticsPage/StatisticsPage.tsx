@@ -1,4 +1,4 @@
-import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel, ChartContainer } from '@/features/statistics'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
@@ -21,16 +21,18 @@ export function StatisticsPage() {
                 Currencies on your account
               </Headline>
     
-              <CircleChart 
-                width={360}
-                height={135}
-                data={currenciesBalanceData} 
-                dataKey='amountInUSD' 
-                align='right'
-                verticalAlign='middle'
-                layout='vertical'
-                formatLabel={formatCurrenciesBalanceLabel}
-              />
+              <ChartContainer>
+                <CircleChart 
+                  width={380}
+                  height={135}
+                  data={currenciesBalanceData} 
+                  dataKey='amountInUSD' 
+                  align='right'
+                  verticalAlign='middle'
+                  layout='vertical'
+                  formatLabel={formatCurrenciesBalanceLabel}
+                />
+              </ChartContainer>
             </div>
 
             <div className={styles.StatisticsBlock}>

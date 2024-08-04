@@ -1,3 +1,5 @@
+export { ChartContainer } from './components/ChartContainer'
+
 export { CircleChart } from './components/CircleChart'
 export { BarChart } from './components/BarChart'
 
