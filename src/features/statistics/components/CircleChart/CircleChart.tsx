@@ -34,7 +34,6 @@ export function CircleChart<T>({
           dataKey={dataKey as DataKey<T>}
           startAngle={90}
           endAngle={-270}
-          dominantBaseline='left'
         >
           {data.map((_, index) => (
             <Cell 
