@@ -8,9 +8,8 @@
   gap: 20px;
 }
 
-/* .StatisticsBlock {} */
-
 .Headline {
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 5px;
 }
