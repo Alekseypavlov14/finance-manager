@@ -42,7 +42,6 @@ export function StatisticsPage() {
                 data={expensesData} 
                 dataKey='amount' 
                 labelKey='date'
-                width={300}
                 height={200}
                 color={failureColor}
                 legendHeight={20}

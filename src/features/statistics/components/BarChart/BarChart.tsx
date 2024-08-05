@@ -7,7 +7,6 @@ interface BarChartProps<T> {
   dataKey: keyof T,
   labelKey: keyof T,
 
-  width: number
   height: number
   color: string
 
@@ -23,7 +22,6 @@ export function BarChart<T>({
   dataKey,
   labelKey,
 
-  width,
   height,
   color,
 
@@ -41,7 +39,6 @@ export function BarChart<T>({
     <ResponsiveContainer height={height + legendHeight}>
       <RechartsBarChart 
         data={data}
-        width={width} 
         height={height + legendHeight}
       >
         <XAxis 
