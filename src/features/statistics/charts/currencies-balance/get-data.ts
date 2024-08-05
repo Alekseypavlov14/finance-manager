@@ -1,6 +1,7 @@
-import { transactionDepositType, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
+import { roundAsMoney, transactionDepositType, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
 import { CurrenciesBalanceEntry } from './data-type'
 import { CurrencyEntity } from '@/entities/currency'
+import { Collection } from '@oleksii-pavlov/collections'
 import { RateEntity } from '@/entities/rates'
 import { Nullable } from '@/shared/types/nullable'
 import { groupBy } from '@/shared/utils/entities'
@@ -34,13 +35,16 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
     const balanceInUSD = balance / rate.rateToUSD
 
     return ({
-      amount: balance,
-      value: balanceInUSD,
+      amount: roundAsMoney(balance),
+      value: roundAsMoney(balanceInUSD),
       label: currency.label,
+      name: currency.label,
     })
   })
 
   const filteredChartDataEntries = chartDataEntries.filter(entry => entry !== null && entry.amount > 0) as CurrenciesBalanceEntry[]
 
-  return filteredChartDataEntries
+  const sortedChartDataByAmountDescending = new Collection(filteredChartDataEntries).sortDescendingBy(group => group.value).getItems()
+
+  return sortedChartDataByAmountDescending
 }

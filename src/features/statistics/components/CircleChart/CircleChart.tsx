@@ -44,7 +44,10 @@ export function CircleChart<T extends ChartDataEntry>({
           ))}
         </Pie>
 
-        <Tooltip formatter={formatTooltipValue} />
+        <Tooltip 
+          formatter={formatTooltipValue} 
+          separator='&nbsp;&asymp;&nbsp;'
+        />
   
         <Legend 
           formatter={(_, __, index) => formatLegendLabel(data[index])}

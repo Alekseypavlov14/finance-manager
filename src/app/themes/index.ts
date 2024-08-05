@@ -10,4 +10,4 @@ export { isDarkTheme } from './utils/is-dark-theme'
 
 export { ThemeToggler } from './components/ThemeToggler'
 
-export { successColor, failureColor } from './constants'
+export { successColor, failureColor, textPrimary } from './constants'
