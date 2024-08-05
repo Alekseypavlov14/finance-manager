@@ -1,22 +1,22 @@
 import { DAY_IN_MILLISECONDS, DAYS_PER_WEEK } from '@/shared/constants'
 import { useAccountTransactions } from '@/entities/transactions'
-import { getExpensesChartData } from './get-data'
+import { getBalanceChartData } from './get-data'
 import { useEffect, useState } from 'react'
+import { BalanceChartEntry } from './data-type'
 import { formatShortWeek } from '@/shared/utils/date-time'
 import { useCurrencies } from '@/entities/currency'
-import { ExpensesEntry } from './data-type'
-import { DateTime } from '@oleksii-pavlov/date-time'
 import { useRates } from '@/entities/rates'
+import { DateTime } from '@oleksii-pavlov/date-time'
 
-export function useExpensesChartData(): ExpensesEntry[] {
+export function useBalanceChartData(): BalanceChartEntry[] {
   const { transactions } = useAccountTransactions()
-  const { rates } = useRates() 
   const currencies = useCurrencies()
+  const { rates } = useRates()
 
-  const [chartData, setChartData] = useState<ExpensesEntry[]>([])
+  const [chartData, setChartData] = useState<BalanceChartEntry[]>([])
 
   useEffect(() => {
-    setChartData(getExpensesChartData({
+    setChartData(getBalanceChartData({
       transactions,
       currencies,
       rates,
@@ -38,7 +38,7 @@ export function useExpensesChartData(): ExpensesEntry[] {
       interval: DAYS_PER_WEEK * DAY_IN_MILLISECONDS,
       formatDate: formatShortWeek
     }))
-  }, [currencies, transactions])
+  }, [transactions, currencies, rates])
 
   return chartData
 }

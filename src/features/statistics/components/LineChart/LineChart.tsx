@@ -43,7 +43,7 @@ export function LineChart<T>({
           angle={ticksAngle}
         />
         
-        <YAxis width={30} />
+        <YAxis width={40} />
 
         <Line 
           type='monotone' 
