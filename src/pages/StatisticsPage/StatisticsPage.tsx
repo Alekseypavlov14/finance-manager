@@ -1,4 +1,4 @@
-import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel, getBalancedShownTicks, LineChart, useBalanceChartData } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, getBalancedShownTicks, LineChart, useBalanceChartData } from '@/features/statistics'
 import { failureColor, successColor } from '@/app/themes'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
@@ -30,7 +30,7 @@ export function StatisticsPage() {
                 align='center'
                 verticalAlign='bottom'
                 layout='vertical'
-                formatLegendLabel={formatCurrenciesBalanceLabel}
+                formatLegendLabel={data => data.label}
                 formatTooltipValue={value => `${roundAsMoney(Number(value))} ${USD_CURRENCY_CODE}`}
               />
             </div>

@@ -1,4 +1,7 @@
 import { roundAsMoney, transactionDepositType, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
+import { currenciesBalanceChartMaxGroupsAmount } from '../../constants'
+import { formatCurrenciesBalanceLabel } from './format-label'
+import { getOtherCurrenciesLabel } from '../../utils/get-other-currencies-label'
 import { CurrenciesBalanceEntry } from './data-type'
 import { CurrencyEntity } from '@/entities/currency'
 import { Collection } from '@oleksii-pavlov/collections'
@@ -37,7 +40,7 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
     return ({
       amount: roundAsMoney(balance),
       value: roundAsMoney(balanceInUSD),
-      label: currency.label,
+      label: formatCurrenciesBalanceLabel(balance, currency.label, balanceInUSD),
       name: currency.label,
     })
   })
@@ -46,5 +49,17 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
 
   const sortedChartDataByAmountDescending = new Collection(filteredChartDataEntries).sortDescendingBy(group => group.value).getItems()
 
-  return sortedChartDataByAmountDescending
+  const otherCurrenciesGroups = sortedChartDataByAmountDescending.slice(currenciesBalanceChartMaxGroupsAmount - 1)
+  const otherCurrenciesGroup: CurrenciesBalanceEntry = {
+    label: getOtherCurrenciesLabel(otherCurrenciesGroups.map(group => group.name)),
+    value: sum(...otherCurrenciesGroups.map(group => group.value)),
+    name: 'Others',
+    amount: 0,
+  }
+
+  const slicedChartDataEntries = sortedChartDataByAmountDescending.length > currenciesBalanceChartMaxGroupsAmount
+    ? sortedChartDataByAmountDescending.slice(0, currenciesBalanceChartMaxGroupsAmount - 1).concat([ otherCurrenciesGroup ])
+    : sortedChartDataByAmountDescending
+
+  return slicedChartDataEntries
 }
