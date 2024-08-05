@@ -25,7 +25,7 @@ export function StatisticsPage() {
     
               <CircleChart 
                 data={currenciesBalanceData} 
-                dataKey='amountInUSD' 
+                dataKey='value' 
                 height={220}
                 align='center'
                 verticalAlign='bottom'
@@ -41,8 +41,8 @@ export function StatisticsPage() {
     
               <BarChart 
                 data={expensesData} 
-                dataKey='amount' 
-                labelKey='date'
+                dataKey='value' 
+                labelKey='label'
                 height={200}
                 color={failureColor}
                 legendHeight={20}
@@ -58,8 +58,8 @@ export function StatisticsPage() {
     
               <LineChart 
                 data={balanceData} 
-                dataKey='amount' 
-                labelKey='date'
+                dataKey='value' 
+                labelKey='label'
                 height={200}
                 color={successColor}
                 tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}

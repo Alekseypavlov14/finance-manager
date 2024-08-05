@@ -33,9 +33,12 @@ export function getExpensesChartData({ transactions, currencies, rates, dateRang
     const transactionsAmountInUSD = relatedTransactions.map(transaction => getTransactionAmountInUSD(transaction, currencies, rates))
     const totalGroupAmountInUSD = roundAsMoney(sum(...transactionsAmountInUSD))
 
-    const date = formatDate(groupDate)
+    const formattedDate = formatDate(groupDate)
 
-    return { date: date, amount: totalGroupAmountInUSD }
+    return ({
+      label: formattedDate,
+      value: totalGroupAmountInUSD,
+    })
   })
 
   return statisticGroups

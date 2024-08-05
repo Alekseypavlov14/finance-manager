@@ -1,4 +1,3 @@
-export interface ExpensesEntry {
-  date: string
-  amount: number
-}
+import { ChartDataEntry } from '../../types/chart-data-entry'
+
+export interface ExpensesEntry extends ChartDataEntry {}

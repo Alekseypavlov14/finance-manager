@@ -39,7 +39,10 @@ export function getBalanceChartData({ transactions, currencies, rates, dateRange
 
     const formattedDate = formatDate(groupDate)
 
-    return { date: formattedDate, amount: totalAmountInUSD }
+    return ({ 
+      label: formattedDate, 
+      value: totalAmountInUSD 
+    })
   })
 
   return statisticGroups

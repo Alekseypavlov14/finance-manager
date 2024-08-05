@@ -35,8 +35,8 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
 
     return ({
       amount: balance,
-      amountInUSD: balanceInUSD,
-      currency: currency.label,
+      value: balanceInUSD,
+      label: currency.label,
     })
   })
 

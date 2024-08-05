@@ -3,9 +3,9 @@ import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { formatAsMoney } from '@/entities/transactions'
 
 export function formatCurrenciesBalanceLabel(entry: CurrenciesBalanceEntry) {
-  const currencyInUSDSection = entry.currency !== USD_CURRENCY_CODE
-    ? ` - ${formatAsMoney(entry.amountInUSD)} ${USD_CURRENCY_CODE}`
+  const currencyInUSDSection = entry.label !== USD_CURRENCY_CODE
+    ? ` - ${formatAsMoney(entry.value)} ${USD_CURRENCY_CODE}`
     : ``
   
-  return `${entry.currency} (${formatAsMoney(entry.amount)} ${entry.currency}${currencyInUSDSection})`
+  return `${entry.label} (${formatAsMoney(entry.amount)} ${entry.label}${currencyInUSDSection})`
 }
