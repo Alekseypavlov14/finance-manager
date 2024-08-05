@@ -1,4 +1,5 @@
 import { roundAsMoney, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
+import { getTransactionAmountInUSD } from '../../utils/get-transaction-amount-in-usd'
 import { CurrencyEntity } from '@/entities/currency'
 import { ExpensesEntry } from './data-type'
 import { RangeValues } from '@oleksii-pavlov/ranges'
@@ -42,16 +43,4 @@ export function getExpensesChartData({ transactions, currencies, rates, dateRang
   })
 
   return statisticGroups
-}
-
-function getTransactionAmountInUSD(transaction: TransactionEntity, currencies: CurrencyEntity[], rates: RateEntity[]) {
-  const currency = currencies.find(currency => currency.id === transaction.money.currencyId)
-  if (!currency) return 0
-
-  const rate = rates.find(rate => rate.currencyCode === currency.label)
-  if (!rate || !rate.rateToUSD) return 0
-
-  const transactionAmountInUSD = transaction.money.amount / rate.rateToUSD
-
-  return transactionAmountInUSD
 }
