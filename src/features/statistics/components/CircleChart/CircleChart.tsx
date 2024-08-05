@@ -1,27 +1,27 @@
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent'
-import { DataKey, LayoutType } from 'recharts/types/util/types'
-import { ReactNode } from 'react'
-import { colors } from '../../constants'
+import { chartDataEntryValueKey, colors } from '../../constants'
+import { ChartDataEntry } from '../../types/chart-data-entry'
+import { ChartSettings } from '../../types/chart-settings'
+import { LayoutType } from 'recharts/types/util/types'
+import sharedStyles from '../shared.module.css'
 
-interface CircleChartProps<T> {
-  data: T[]
-  dataKey: keyof T
-  height: number
+interface CircleChartProps<T extends ChartDataEntry> extends ChartSettings<T> {
   align?: HorizontalAlignmentType
   verticalAlign?: VerticalAlignmentType
   layout?: LayoutType
-  formatLabel?: (entry: T, index: number) => ReactNode
 }
 
-export function CircleChart<T>({ 
-  data, 
-  dataKey,
+export function CircleChart<T extends ChartDataEntry>({ 
+  data,
   height,
+  
+  formatTooltipValue = (value) => value,
+  formatLegendLabel = (data: T) => data.label,
+  
   align,
   verticalAlign,
   layout,
-  formatLabel = (_: T, index: number) => index,
 }: CircleChartProps<T>) {
   return (
     <ResponsiveContainer height={height}>
@@ -31,7 +31,7 @@ export function CircleChart<T>({
           innerRadius={45}
           outerRadius={60}
           paddingAngle={10}
-          dataKey={dataKey as DataKey<T>}
+          dataKey={chartDataEntryValueKey}
           startAngle={90}
           endAngle={-270}
         >
@@ -43,12 +43,17 @@ export function CircleChart<T>({
             />
           ))}
         </Pie>
+
+        <Tooltip 
+          wrapperClassName={sharedStyles.TooltipWrapper}
+          formatter={formatTooltipValue}
+        />
   
         <Legend 
-          align={align} 
+          formatter={(_, __, index) => formatLegendLabel(data[index])}
           verticalAlign={verticalAlign}
-          formatter={(_, __, index) => formatLabel(data[index], index)}
           layout={layout}
+          align={align} 
         />
       </PieChart>
     </ResponsiveContainer>

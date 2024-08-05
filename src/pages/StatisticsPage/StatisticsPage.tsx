@@ -3,6 +3,7 @@ import { failureColor, successColor } from '@/app/themes'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { roundAsMoney } from '@/entities/transactions'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -23,14 +24,14 @@ export function StatisticsPage() {
                 Currencies on your account
               </Headline>
     
-              <CircleChart 
+              <CircleChart
                 data={currenciesBalanceData} 
-                dataKey='value' 
                 height={220}
                 align='center'
                 verticalAlign='bottom'
-                layout='horizontal'
-                formatLabel={formatCurrenciesBalanceLabel}
+                layout='vertical'
+                formatLegendLabel={formatCurrenciesBalanceLabel}
+                formatTooltipValue={value => `${roundAsMoney(Number(value))} ${USD_CURRENCY_CODE}`}
               />
             </div>
 
