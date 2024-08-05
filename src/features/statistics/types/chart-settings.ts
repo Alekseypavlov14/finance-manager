@@ -4,6 +4,9 @@ import { ReactNode } from 'react'
 export interface ChartSettings<T extends ChartDataEntry> {
   data: T[]
 
+  dataKey?: keyof T
+  labelKey?: keyof T
+
   height: number
   color?: string
   yAxisWidth?: number

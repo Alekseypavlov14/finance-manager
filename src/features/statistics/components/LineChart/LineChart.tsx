@@ -3,11 +3,15 @@ import { chartDataEntryLabelKey, chartDataEntryValueKey, chartVerticalMargin } f
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
 import { Tooltip } from '../Tooltip'
+import { DataKey } from 'recharts/types/util/types'
 
 interface LineChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
 export function LineChart<T extends ChartDataEntry>({ 
   data,
+
+  dataKey = chartDataEntryValueKey,
+  labelKey = chartDataEntryLabelKey,
 
   height,
   color,
@@ -33,7 +37,7 @@ export function LineChart<T extends ChartDataEntry>({
         }}
       >
         <XAxis 
-          dataKey={chartDataEntryLabelKey}
+          dataKey={labelKey as DataKey<T>}
           ticks={xAxisTicks}
           angle={ticksAngle}
         />
@@ -42,7 +46,7 @@ export function LineChart<T extends ChartDataEntry>({
 
         <Line 
           type='monotone' 
-          dataKey={chartDataEntryValueKey}
+          dataKey={dataKey as DataKey<T>}
           stroke={color} 
         />
 

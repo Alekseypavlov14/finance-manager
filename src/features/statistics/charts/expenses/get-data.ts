@@ -39,6 +39,7 @@ export function getExpensesChartData({ transactions, currencies, rates, dateRang
     return ({
       label: formattedDate,
       value: totalGroupAmountInUSD,
+      expenses: totalGroupAmountInUSD,
     })
   })
 

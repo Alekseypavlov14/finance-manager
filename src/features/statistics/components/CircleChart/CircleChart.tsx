@@ -1,9 +1,9 @@
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts'
 import { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent'
 import { chartDataEntryValueKey, colors } from '../../constants'
+import { DataKey, LayoutType } from 'recharts/types/util/types'
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
-import { LayoutType } from 'recharts/types/util/types'
 import { Tooltip } from '../Tooltip'
 
 interface CircleChartProps<T extends ChartDataEntry> extends ChartSettings<T> {
@@ -15,6 +15,8 @@ interface CircleChartProps<T extends ChartDataEntry> extends ChartSettings<T> {
 export function CircleChart<T extends ChartDataEntry>({ 
   data,
   height,
+
+  dataKey = chartDataEntryValueKey,
   
   formatTooltipValue = (value) => value,
   formatLegendLabel = (data: T) => data.label,
@@ -31,7 +33,7 @@ export function CircleChart<T extends ChartDataEntry>({
           innerRadius={45}
           outerRadius={60}
           paddingAngle={10}
-          dataKey={chartDataEntryValueKey}
+          dataKey={dataKey as DataKey<T>}
           startAngle={90}
           endAngle={-270}
         >

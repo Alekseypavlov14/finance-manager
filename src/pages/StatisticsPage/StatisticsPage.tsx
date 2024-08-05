@@ -42,6 +42,7 @@ export function StatisticsPage() {
     
               <BarChart 
                 data={expensesData} 
+                dataKey='expenses'
                 height={200}
                 color={failureColor}
                 formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
@@ -56,6 +57,7 @@ export function StatisticsPage() {
     
               <LineChart 
                 data={balanceData} 
+                dataKey='balance'
                 height={200}
                 yAxisWidth={35}
                 color={successColor}

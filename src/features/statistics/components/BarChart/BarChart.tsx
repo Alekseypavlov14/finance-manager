@@ -3,11 +3,15 @@ import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, XAxis } from 'r
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
 import { Tooltip } from '../Tooltip'
+import { DataKey } from 'recharts/types/util/types'
 
 interface BarChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
 export function BarChart<T extends ChartDataEntry>({
   data,
+
+  dataKey = chartDataEntryValueKey,
+  labelKey = chartDataEntryLabelKey,
 
   height,
   color,
@@ -29,13 +33,13 @@ export function BarChart<T extends ChartDataEntry>({
         }}
       >
         <XAxis 
-          dataKey={chartDataEntryLabelKey} 
+          dataKey={labelKey as DataKey<T>} 
           angle={ticksAngle}
           ticks={xAxisTicks}
         />
   
         <Bar 
-          dataKey={chartDataEntryValueKey} 
+          dataKey={dataKey as DataKey<T>} 
           fill={color}
         />
   

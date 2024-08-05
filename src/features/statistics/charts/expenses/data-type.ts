@@ -1,3 +1,5 @@
 import { ChartDataEntry } from '../../types/chart-data-entry'
 
-export interface ExpensesEntry extends ChartDataEntry {}
+export interface ExpensesEntry extends ChartDataEntry {
+  expenses: number
+}

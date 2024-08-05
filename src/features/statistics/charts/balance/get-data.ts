@@ -42,7 +42,8 @@ export function getBalanceChartData({ transactions, currencies, rates, dateRange
 
     return ({ 
       label: formattedDate, 
-      value: totalAmountInUSD 
+      value: totalAmountInUSD,
+      balance: totalAmountInUSD,
     })
   })
 
