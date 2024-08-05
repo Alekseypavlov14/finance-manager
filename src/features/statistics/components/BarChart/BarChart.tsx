@@ -1,8 +1,8 @@
-import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 import { chartDataEntryLabelKey, chartDataEntryValueKey, chartVerticalMargin } from '../../constants'
+import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, XAxis } from 'recharts'
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
-import sharedStyles from '../shared.module.css'
+import { Tooltip } from '../Tooltip'
 
 interface BarChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
@@ -39,9 +39,8 @@ export function BarChart<T extends ChartDataEntry>({
           fill={color}
         />
   
-        <Tooltip 
+        <Tooltip
           formatter={formatTooltipValue}
-          wrapperClassName={sharedStyles.TooltipWrapper}
           cursor={{ opacity: '0.4' }}
         />
       </RechartsBarChart>
