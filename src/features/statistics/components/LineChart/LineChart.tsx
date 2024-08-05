@@ -1,64 +1,61 @@
-import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
+import { ResponsiveContainer, LineChart as RechartsLineChart, XAxis, Tooltip, YAxis, Line } from 'recharts'
 import { DataKey } from 'recharts/types/util/types'
 import sharedStyles from '../shared.module.css'
 
-interface BarChartProps<T> {
+interface LineChartProps<T> {
   data: T[]
-  dataKey: keyof T,
-  labelKey: keyof T,
+  dataKey: keyof T
+  labelKey: keyof T
 
   height: number
   color: string
 
-  legendHeight?: number
   ticksAngle?: number
   shownTicks?: number[]
-
   tooltipValueFormatter?: (value: string) => string
 }
 
-export function BarChart<T>({
+export function LineChart<T>({ 
   data,
   dataKey,
   labelKey,
-
   height,
   color,
-
-  legendHeight = 0,
   ticksAngle,
   shownTicks,
-
-  tooltipValueFormatter,
-}: BarChartProps<T>) {
+  tooltipValueFormatter
+}: LineChartProps<T>) {
   const xAxisTicks = shownTicks 
     ? data.map((data, index) => shownTicks.includes(index) ? data[labelKey] as string : '')
     : undefined
 
   return (
-    <ResponsiveContainer height={height + legendHeight}>
-      <RechartsBarChart 
+    <ResponsiveContainer 
+      height={height}
+    >
+      <RechartsLineChart 
         data={data}
-        height={height + legendHeight}
+        margin={{ right: 30 }}
       >
         <XAxis 
           dataKey={labelKey as DataKey<T>} 
-          height={legendHeight}
-          angle={ticksAngle}
           ticks={xAxisTicks}
+          angle={ticksAngle}
         />
-  
-        <Bar 
+        
+        <YAxis width={30} />
+
+        <Line 
+          type='monotone' 
           dataKey={dataKey as DataKey<T>} 
-          fill={color}
+          stroke={color} 
         />
-  
+
         <Tooltip 
-          formatter={tooltipValueFormatter}
           wrapperClassName={sharedStyles.TooltipWrapper}
-          cursor={{ opacity: '0.4' }}
+          formatter={tooltipValueFormatter}
         />
-      </RechartsBarChart>
+      </RechartsLineChart>
     </ResponsiveContainer>
   )
 }
