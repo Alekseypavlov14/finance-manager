@@ -1,33 +1,24 @@
 import { ResponsiveContainer, LineChart as RechartsLineChart, XAxis, Tooltip, YAxis, Line } from 'recharts'
-import { DataKey } from 'recharts/types/util/types'
+import { chartDataEntryLabelKey, chartDataEntryValueKey, chartVerticalMargin } from '../../constants'
+import { ChartDataEntry } from '../../types/chart-data-entry'
+import { ChartSettings } from '../../types/chart-settings'
 import sharedStyles from '../shared.module.css'
 
-interface LineChartProps<T> {
-  data: T[]
-  dataKey: keyof T
-  labelKey: keyof T
+interface LineChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
-  height: number
-  color: string
-
-  ticksAngle?: number
-  shownTicks?: number[]
-  tooltipValueFormatter?: (value: string) => string
-}
-
-export function LineChart<T>({ 
+export function LineChart<T extends ChartDataEntry>({ 
   data,
-  dataKey,
-  labelKey,
+
   height,
   color,
+  yAxisWidth,
+
   ticksAngle,
-  shownTicks,
-  tooltipValueFormatter
+  shownTicks = new Array(data.length).fill(0).map((_, index) => index),
+  formatLabel = (data) => data.label,
+  formatTooltipValue = (value) => value,
 }: LineChartProps<T>) {
-  const xAxisTicks = shownTicks 
-    ? data.map((data, index) => shownTicks.includes(index) ? data[labelKey] as string : '')
-    : undefined
+  const xAxisTicks = data.map((data, index) => shownTicks.includes(index) ? formatLabel(data) : '')
 
   return (
     <ResponsiveContainer 
@@ -35,25 +26,30 @@ export function LineChart<T>({
     >
       <RechartsLineChart 
         data={data}
-        margin={{ right: 30 }}
+        margin={{ 
+          right: yAxisWidth,
+          top: chartVerticalMargin,
+          bottom: chartVerticalMargin,
+        }}
       >
         <XAxis 
-          dataKey={labelKey as DataKey<T>} 
+          dataKey={chartDataEntryLabelKey}
           ticks={xAxisTicks}
           angle={ticksAngle}
         />
         
-        <YAxis width={40} />
+        <YAxis width={yAxisWidth} />
 
         <Line 
           type='monotone' 
-          dataKey={dataKey as DataKey<T>} 
+          dataKey={chartDataEntryValueKey}
           stroke={color} 
         />
 
         <Tooltip 
           wrapperClassName={sharedStyles.TooltipWrapper}
-          formatter={tooltipValueFormatter}
+          formatter={formatTooltipValue}
+          cursor={{ opacity: 0.4 }}
         />
       </RechartsLineChart>
     </ResponsiveContainer>

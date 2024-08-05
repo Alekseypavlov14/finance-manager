@@ -1,60 +1,46 @@
 import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
-import { DataKey } from 'recharts/types/util/types'
+import { chartDataEntryLabelKey, chartDataEntryValueKey, chartVerticalMargin } from '../../constants'
+import { ChartDataEntry } from '../../types/chart-data-entry'
+import { ChartSettings } from '../../types/chart-settings'
 import sharedStyles from '../shared.module.css'
 
-interface BarChartProps<T> {
-  data: T[]
-  dataKey: keyof T,
-  labelKey: keyof T,
+interface BarChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
-  height: number
-  color: string
-
-  legendHeight?: number
-  ticksAngle?: number
-  shownTicks?: number[]
-
-  tooltipValueFormatter?: (value: string) => string
-}
-
-export function BarChart<T>({
+export function BarChart<T extends ChartDataEntry>({
   data,
-  dataKey,
-  labelKey,
 
   height,
   color,
 
-  legendHeight = 0,
   ticksAngle,
-  shownTicks,
-
-  tooltipValueFormatter,
+  shownTicks = new Array(data.length).fill(0).map((_, index) => index),
+  formatLabel = (data) => data.label,
+  formatTooltipValue = (value) => value,
 }: BarChartProps<T>) {
-  const xAxisTicks = shownTicks 
-    ? data.map((data, index) => shownTicks.includes(index) ? data[labelKey] as string : '')
-    : undefined
+  const xAxisTicks = data.map((data, index) => shownTicks.includes(index) ? formatLabel(data) : '')
 
   return (
-    <ResponsiveContainer height={height + legendHeight}>
+    <ResponsiveContainer height={height}>
       <RechartsBarChart 
         data={data}
-        height={height + legendHeight}
+        margin={{ 
+          top: chartVerticalMargin,
+          bottom: chartVerticalMargin
+        }}
       >
         <XAxis 
-          dataKey={labelKey as DataKey<T>} 
-          height={legendHeight}
+          dataKey={chartDataEntryLabelKey} 
           angle={ticksAngle}
           ticks={xAxisTicks}
         />
   
         <Bar 
-          dataKey={dataKey as DataKey<T>} 
+          dataKey={chartDataEntryValueKey} 
           fill={color}
         />
   
         <Tooltip 
-          formatter={tooltipValueFormatter}
+          formatter={formatTooltipValue}
           wrapperClassName={sharedStyles.TooltipWrapper}
           cursor={{ opacity: '0.4' }}
         />

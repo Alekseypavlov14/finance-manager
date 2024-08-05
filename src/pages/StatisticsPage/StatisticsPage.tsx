@@ -1,8 +1,8 @@
 import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, formatCurrenciesBalanceLabel, getBalancedShownTicks, LineChart, useBalanceChartData } from '@/features/statistics'
+import { failureColor, successColor } from '@/app/themes'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
-import { failureColor, successColor } from '@/app/themes'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -41,12 +41,9 @@ export function StatisticsPage() {
     
               <BarChart 
                 data={expensesData} 
-                dataKey='value' 
-                labelKey='label'
                 height={200}
                 color={failureColor}
-                legendHeight={20}
-                tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}
+                formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
                 shownTicks={getBalancedShownTicks(expensesData.length, 3)}
               />
             </div>
@@ -58,11 +55,10 @@ export function StatisticsPage() {
     
               <LineChart 
                 data={balanceData} 
-                dataKey='value' 
-                labelKey='label'
                 height={200}
+                yAxisWidth={35}
                 color={successColor}
-                tooltipValueFormatter={value => `${value} ${USD_CURRENCY_CODE}`}
+                formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
                 shownTicks={getBalancedShownTicks(expensesData.length, 3)}
               />
             </div>
