@@ -83,7 +83,7 @@ export function StatisticsPage() {
                 data={balanceData} 
                 dataKey='balance'
                 height={200}
-                yAxisWidth={35}
+                yAxisWidth={45}
                 color={successColor}
                 formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
                 shownTicks={getBalancedShownTicks(expensesData.length, 3)}
