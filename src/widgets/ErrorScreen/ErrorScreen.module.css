@@ -1,0 +1,11 @@
+.ErrorScreen {
+  font-size: 16px;
+  color: var(--text-secondary);
+  gap: 5px;
+}
+
+.ErrorScreenIcon {
+  font-size: 28px;
+  color: var(--text-primary);
+  opacity: 0.8;
+}

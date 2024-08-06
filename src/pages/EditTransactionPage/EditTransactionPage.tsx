@@ -3,6 +3,7 @@ import { useNotifications } from '@/features/notifications'
 import { ProtectedRoute } from '@/app/auth'
 import { useNavigation } from '@/app/routing'
 import { LoaderScreen } from '@/widgets/LoaderScreen'
+import { ErrorScreen } from '@/widgets/ErrorScreen'
 import { Container } from '@/shared/components/Container'
 import { Header } from '@/widgets/Header'
 import { Page } from '@/shared/components/Page'
@@ -30,7 +31,9 @@ export function EditTransactionPage() {
   if (!isLoading && !transaction) return (
     <ProtectedRoute>
       <Page>
-        <LoaderScreen />
+        <ErrorScreen>
+          This transaction is not found
+        </ErrorScreen>
       </Page>
     </ProtectedRoute>
   )
