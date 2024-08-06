@@ -28,7 +28,7 @@ export function StatisticsPage() {
     </ProtectedRoute>
   )
     
-  if (!isLoading && transactions.length) return (
+  if (!isLoading && !transactions.length) return (
     <ProtectedRoute>
       <Page>
         <StructureLayout>
