@@ -1,5 +1,6 @@
 import { mapTransactionToFormData, TransactionForm, transactionFormEditMode } from '@/widgets/TransactionForm'
-import { editTransaction, TransactionClientData } from '@/features/transactions'
+import { deleteTransaction, editTransaction, TransactionClientData } from '@/features/transactions'
+import { Button, Divider, Popconfirm } from 'antd'
 import { handleHTTPException } from '@/shared/utils/exception'
 import { useTransactionById } from './hooks/use-transaction-by-id'
 import { useNotifications } from '@/features/notifications'
@@ -15,7 +16,7 @@ import styles from './EditTransactionPage.module.css'
 
 export function EditTransactionPage() {
   const { navigateHomePage, navigateTransactionsPage } = useNavigation()
-  const { successMessage, errorMessage } = useNotifications()
+  const { successMessage, errorMessage, infoMessage } = useNotifications()
 
   function handleError() {
     navigateHomePage()
@@ -54,17 +55,47 @@ export function EditTransactionPage() {
       }))
   }
 
+  function deleteHandler() {
+    if (!transaction) return
+
+    return deleteTransaction(transaction.id)
+      .then(navigateTransactionsPage)
+      .then(() => infoMessage('Transaction is deleted'))
+      .catch(handleHTTPException({
+        500: () => errorMessage('Something went wrong, try later'),
+        [defaultHandler]: () => errorMessage('Something went wrong, try later'),
+      }))
+  }
+
   return (
     <ProtectedRoute>
       <Page className={styles.EditTransactionPage}>
         <Header />
 
-        <Container>
+        <Container className={styles.Container}>
           <TransactionForm 
             mode={transactionFormEditMode}
             initialValue={mapTransactionToFormData(transaction)}
             onSubmit={submitHandler}
           />
+
+          <Divider
+            className={styles.Divider}
+            plain
+          >
+            Or
+          </Divider>
+
+          <Popconfirm
+            title='Are you sure to delete this transaction?'
+            okText='Delete'
+            cancelText='Cancel'
+            onConfirm={deleteHandler}
+          >
+            <Button danger block>
+              Delete
+            </Button>
+          </Popconfirm>
         </Container>
       </Page>
     </ProtectedRoute>
