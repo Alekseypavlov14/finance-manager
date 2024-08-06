@@ -1,7 +1,8 @@
+import { formatAsMoney, TransactionEntity } from '@/entities/transactions'
 import { transactionGroupTypeNone } from './constants'
 import { getGroupedTransactions } from './utils/get-grouped-transactions'
 import { TransactionGroupType } from './types/transaction-group-type'
-import { TransactionEntity } from '@/entities/transactions'
+import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { TransactionCard } from '../TransactionCard'
 import { useCurrencies } from '@/entities/currency'
 import { Headline } from '@/shared/components/Headline'
@@ -34,12 +35,22 @@ export function TransactionList({
           className={styles.TransactionsGroup}
           key={index}
         >
-          <Headline 
-            className={styles.TransactionsGroupLabel}
-            level={5}
-          >
-            {group.label}
-          </Headline>
+          <div className={styles.TransactionsGroupHeader}>
+            <Headline 
+              className={styles.TransactionsGroupLabel}
+              level={5}
+            >
+              {group.label}
+            </Headline>
+
+            <Headline
+              className={styles.TransactionsGroupStatistics}
+              level={5}
+            >
+              <div className={styles.TransactionGroupIncomes}>+{formatAsMoney(group.incomes)} {USD_CURRENCY_CODE}</div>
+              <div className={styles.TransactionGroupExpenses}>-{formatAsMoney(group.expenses)} {USD_CURRENCY_CODE}</div>
+            </Headline>
+          </div>
 
           <div className={styles.TransactionsGroupContent}>
             {group.transactions.map(transaction => (

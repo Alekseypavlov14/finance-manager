@@ -10,10 +10,29 @@
   width: 100%;
 }
 
+.TransactionsGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .TransactionsGroupLabel {
   margin-bottom: 5px;
   font-size: 12px;
   font-weight: 600;
+}
+
+.TransactionsGroupStatistics {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+.TransactionGroupIncomes {
+  color: var(--text-third);
+}
+.TransactionGroupExpenses {
+  color: var(--text-third);
 }
 
 .TransactionsGroupContent {
