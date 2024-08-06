@@ -38,7 +38,7 @@ export function useExpensesChartData(): ExpensesEntry[] {
       interval: DAYS_PER_WEEK * DAY_IN_MILLISECONDS,
       formatDate: formatShortWeek
     }))
-  }, [currencies, transactions])
+  }, [currencies, transactions, rates])
 
   return chartData
 }
