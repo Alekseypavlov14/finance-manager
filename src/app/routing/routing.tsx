@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { CreateTransactionPage } from '@/pages/CreateTransactionPage'
+import { EditTransactionPage } from '@/pages/EditTransactionPage'
 import { TransactionListPage } from '@/pages/TransactionListPage'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { StatisticsPage } from '@/pages/StatisticsPage'
@@ -19,6 +20,10 @@ export const routing = createBrowserRouter([
   {
     path: '/transactions/create',
     element: <CreateTransactionPage />
+  },
+  {
+    path: '/transactions/edit/:id',
+    element: <EditTransactionPage />
   },
   {
     path: '/transactions/list',
