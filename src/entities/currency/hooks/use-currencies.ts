@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react'
 import { currenciesStorage } from '../currencies.storage'
 import { CurrencyEntity } from '../currency.entity'
-import { useEffect, useState } from 'react'
 
 export function useCurrencies() {
   const [currencies, setCurrencies] = useState<CurrencyEntity[]>([])

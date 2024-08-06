@@ -1,6 +1,6 @@
 import { formatAsMoney, TransactionEntity } from '@/entities/transactions'
 import { transactionGroupTypeNone } from './constants'
-import { getGroupedTransactions } from './utils/get-grouped-transactions'
+import { useTransactionsGroups } from './hooks/use-transactions-groups'
 import { TransactionGroupType } from './types/transaction-group-type'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { TransactionCard } from '../TransactionCard'
@@ -26,7 +26,7 @@ export function TransactionList({
     return currencies.find(findById(currencyId ?? ''))?.label ?? ''
   }
 
-  const transactionGroups = getGroupedTransactions(transactions, groupingType)
+  const transactionGroups = useTransactionsGroups(transactions, groupingType)
 
   return (
     <div className={styles.TransactionList}>
