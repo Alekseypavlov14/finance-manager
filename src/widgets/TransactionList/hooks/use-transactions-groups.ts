@@ -7,7 +7,7 @@ import { useCurrencies } from '@/entities/currency'
 import { useRates } from '@/entities/rates'
 
 export function useTransactionsGroups(transactions: TransactionEntity[], groupingType: TransactionGroupType) {
-  const currencies = useCurrencies()
+  const { currencies } = useCurrencies()
   const { rates } = useRates()
 
   const [transactionsGroups, setTransactionsGroups] = useState<TransactionGroup[]>([])

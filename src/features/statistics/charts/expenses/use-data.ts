@@ -10,8 +10,8 @@ import { useRates } from '@/entities/rates'
 
 export function useExpensesChartData(): ExpensesEntry[] {
   const { transactions } = useAccountTransactions()
+  const { currencies } = useCurrencies()
   const { rates } = useRates() 
-  const currencies = useCurrencies()
 
   const [chartData, setChartData] = useState<ExpensesEntry[]>([])
 

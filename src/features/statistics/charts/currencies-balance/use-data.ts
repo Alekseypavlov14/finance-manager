@@ -7,8 +7,8 @@ import { useRates } from '@/entities/rates'
 
 export function useCurrenciesBalanceChartData(): CurrenciesBalanceEntry[] {
   const { transactions } = useAccountTransactions()
+  const { currencies } = useCurrencies()
   const { rates } = useRates()
-  const currencies = useCurrencies()
 
   const [chartData, setChartData] = useState<CurrenciesBalanceEntry[]>([])
 

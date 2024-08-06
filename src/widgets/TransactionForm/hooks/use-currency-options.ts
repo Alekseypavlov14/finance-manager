@@ -5,7 +5,7 @@ import { useCurrencies } from '@/entities/currency'
 
 export function useCurrencyOptions(): CurrencyOption[] {
   const [currencyOptions, setCurrencyOptions] = useState<CurrencyOption[]>([])
-  const currencies = useCurrencies()
+  const { currencies } = useCurrencies()
 
   useEffect(() => {
     setCurrencyOptions(currencies.map(mapCurrencyToOption))

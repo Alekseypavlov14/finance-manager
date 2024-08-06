@@ -20,7 +20,7 @@ export function TransactionList({
   transactions, 
   groupingType = transactionGroupTypeNone 
 }: TransactionListProps) {
-  const currencies = useCurrencies()
+  const { currencies } = useCurrencies()
 
   function getCurrencyLabel(currencyId: Nullable<Id>) {
     return currencies.find(findById(currencyId ?? ''))?.label ?? ''

@@ -10,7 +10,7 @@ import { DateTime } from '@oleksii-pavlov/date-time'
 
 export function useBalanceChartData(): BalanceChartEntry[] {
   const { transactions } = useAccountTransactions()
-  const currencies = useCurrencies()
+  const { currencies } = useCurrencies()
   const { rates } = useRates()
 
   const [chartData, setChartData] = useState<BalanceChartEntry[]>([])

@@ -12,14 +12,18 @@ export function useRates(): UseRatesResult {
   const [rates, setRates] = useState<RateEntity[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const currencies = useCurrencies()
+  const { currencies } = useCurrencies()
+
+  function stopLoading() {
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     setIsLoading(true)
 
     ratesStorage.getRates(currencies.map(currency => currency.label))
       .then(setRates)
-      .then(() => setIsLoading(false))
+      .then(stopLoading)
 
   }, [currencies])
 
