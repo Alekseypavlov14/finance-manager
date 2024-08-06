@@ -2,7 +2,7 @@ import { transactionDepositType, transactionWithdrawType } from '@/entities/tran
 import { TransactionTypeOption } from './types/transaction-type-option'
 import { TransactionFormData } from './types/transaction-form-data'
 
-export const initialValues: TransactionFormData = {
+export const defaultInitialValues: TransactionFormData = {
   type: transactionWithdrawType,
   description: '',
   amount: 0,
