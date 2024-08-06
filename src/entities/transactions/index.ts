@@ -4,6 +4,7 @@ export type { TransactionType } from './types/transaction-type'
 
 export { accountTransactionsStorage, AccountTransactionsStorage } from './account-transactions.storage'
 export { sortTransactionsByDescendingDate } from './utils/sort-transactions-by-descending-date'
+export { getTransactionAmountInUSD } from './utils/get-transaction-amount-in-usd'
 export { useAccountTransactions } from './hooks/use-account-transactions'
 export { transactionRepository } from './transactions.repository'
 export { formatAsMoney } from './utils/format-as-money'

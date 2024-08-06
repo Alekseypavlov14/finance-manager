@@ -1,5 +1,4 @@
-import { roundAsMoney, transactionDepositType, TransactionEntity, transactionWithdrawType } from '@/entities/transactions'
-import { getTransactionAmountInUSD } from '../../utils/get-transaction-amount-in-usd'
+import { roundAsMoney, transactionDepositType, TransactionEntity, transactionWithdrawType, getTransactionAmountInUSD } from '@/entities/transactions'
 import { BalanceChartEntry } from './data-type'
 import { CurrencyEntity } from '@/entities/currency'
 import { RangeValues } from '@oleksii-pavlov/ranges'
