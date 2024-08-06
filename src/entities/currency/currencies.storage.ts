@@ -1,10 +1,10 @@
-import { CURRENCIES_CACHE_TIMEOUT } from '@/shared/constants'
+import { CURRENCIES_CACHE_TIMEOUT, CURRENCIES_STORAGE_KEY } from '@/shared/constants'
 import { currenciesRepository } from './currencies.repository'
 import { CurrencyEntity } from './currency.entity'
 import { Cache } from '@oleksii-pavlov/storages'
 
 export class CurrenciesStorage {
-  private readonly cache = new Cache<CurrencyEntity[]>('currencies', CURRENCIES_CACHE_TIMEOUT)
+  private readonly cache = new Cache<CurrencyEntity[]>(CURRENCIES_STORAGE_KEY, CURRENCIES_CACHE_TIMEOUT)
 
   async getValue(): Promise<CurrencyEntity[]> {
     const cachedValue = this.cache.getValue()
