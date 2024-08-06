@@ -5,7 +5,7 @@ import { getOtherCurrenciesLabel } from '../../utils/get-other-currencies-label'
 import { CurrenciesBalanceEntry } from './data-type'
 import { CurrencyEntity } from '@/entities/currency'
 import { Collection } from '@oleksii-pavlov/collections'
-import { RateEntity } from '@/entities/rates'
+import { getAmountInUSD, RateEntity } from '@/entities/rates'
 import { Nullable } from '@/shared/types/nullable'
 import { groupBy } from '@/shared/utils/entities'
 import { sum } from '@/shared/utils/numbers'
@@ -24,9 +24,6 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
     const currency = currencies.find(currency => currency.id === group.key)
     if (!currency) return null
 
-    const rate = rates.find(rate => rate.currencyCode === currency.label)
-    if (!rate || !rate.rateToUSD) return null
-
     const depositTransactions = group.entities.filter(transaction => transaction.type === transactionDepositType)
     const withdrawTransactions = group.entities.filter(transaction => transaction.type === transactionWithdrawType)
 
@@ -35,7 +32,7 @@ export function getCurrenciesBalanceChartData({ transactions, currencies, rates 
 
     const balance = totalDepositsAmount - totalWithdrawsAmount
 
-    const balanceInUSD = balance / rate.rateToUSD
+    const balanceInUSD = getAmountInUSD(balance, currency.label, rates)
 
     return ({
       amount: roundAsMoney(balance),
