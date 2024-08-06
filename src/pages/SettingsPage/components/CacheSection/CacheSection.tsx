@@ -15,7 +15,7 @@ export function CacheSection() {
 
   return (
     <SettingsSection>
-      <SettingsSectionTitle>Themes</SettingsSectionTitle>
+      <SettingsSectionTitle>Cache</SettingsSectionTitle>
 
       <SettingsSectionContent>
         <Button 
