@@ -1,0 +1,13 @@
+.NoTransactionsScreen {
+  padding-bottom: 10%;
+}
+
+.NoTransactionsScreenLabel {
+  text-align: center;
+}
+
+.NoTransactionsScreenLink {
+  height: auto;
+  padding: 0px;
+  opacity: 0.9;
+}

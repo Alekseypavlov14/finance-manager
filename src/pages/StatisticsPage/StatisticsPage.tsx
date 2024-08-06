@@ -1,9 +1,11 @@
 import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, getBalancedShownTicks, LineChart, useBalanceChartData } from '@/features/statistics'
+import { roundAsMoney, useAccountTransactions } from '@/entities/transactions'
 import { failureColor, successColor } from '@/app/themes'
+import { NoTransactionsScreen } from '@/widgets/NoTransactionsScreen'
 import { USD_CURRENCY_CODE } from '@/entities/rates'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
-import { roundAsMoney } from '@/entities/transactions'
+import { LoaderScreen } from '@/widgets/LoaderScreen'
 import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
@@ -13,6 +15,28 @@ export function StatisticsPage() {
   const currenciesBalanceData = useCurrenciesBalanceChartData()
   const expensesData = useExpensesChartData()
   const balanceData = useBalanceChartData()
+
+  const { transactions, isLoading } = useAccountTransactions()
+  
+  if (isLoading) return (
+    <ProtectedRoute>
+      <Page>
+        <StructureLayout>
+          <LoaderScreen />
+        </StructureLayout>
+      </Page>
+    </ProtectedRoute>
+  )
+    
+  if (!isLoading && transactions.length) return (
+    <ProtectedRoute>
+      <Page>
+        <StructureLayout>
+          <NoTransactionsScreen />
+        </StructureLayout>
+      </Page>
+    </ProtectedRoute>
+  )
 
   return (
     <ProtectedRoute>
