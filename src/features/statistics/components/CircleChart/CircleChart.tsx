@@ -36,6 +36,7 @@ export function CircleChart<T extends ChartDataEntry>({
           dataKey={dataKey as DataKey<T>}
           startAngle={90}
           endAngle={-270}
+          animationBegin={0}
         >
           {data.map((_, index) => (
             <Cell 
