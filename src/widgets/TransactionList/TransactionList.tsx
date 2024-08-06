@@ -14,11 +14,13 @@ import styles from './TransactionList.module.css'
 interface TransactionListProps {
   transactions: TransactionEntity[]
   groupingType?: TransactionGroupType
+  onClickTransaction?: (transaction: TransactionEntity) => () => void
 }
 
 export function TransactionList({ 
   transactions, 
-  groupingType = transactionGroupTypeNone 
+  groupingType = transactionGroupTypeNone,
+  onClickTransaction = () => () => {},
 }: TransactionListProps) {
   const { currencies } = useCurrencies()
 
@@ -61,6 +63,7 @@ export function TransactionList({
                 description={transaction.description}
                 date={transaction.date}
                 key={transaction.id}
+                onClick={onClickTransaction(transaction)}
               />
             ))}
           </div>

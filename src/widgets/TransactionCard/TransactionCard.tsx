@@ -10,6 +10,7 @@ interface TransactionCardProps {
   currency: string
   description: string
   date: number
+  onClick?: () => void
 }
 
 export function TransactionCard({
@@ -18,6 +19,7 @@ export function TransactionCard({
   currency,
   description,
   date,
+  onClick,
 }: TransactionCardProps) {
   const transactionSign = {
     [transactionDepositType]: '+',
@@ -30,7 +32,10 @@ export function TransactionCard({
   }[type]
 
   return (
-    <div className={clsx(styles.TransactionCard, transactionModifierClass)}>
+    <div 
+      className={clsx(styles.TransactionCard, transactionModifierClass)}
+      onClick={onClick}
+    >
       <div className={styles.TransactionHeader}>
         <div className={styles.TransactionMoney}>
           {transactionSign}{formatAsMoney(amount)} {currency}

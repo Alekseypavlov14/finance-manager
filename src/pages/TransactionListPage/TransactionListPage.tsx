@@ -3,6 +3,7 @@ import { transactionGroupTypeWeeks, TransactionList } from '@/widgets/Transactio
 import { NoTransactionsScreen } from '@/widgets/NoTransactionsScreen'
 import { StructureLayout } from '@/layouts/StructureLayout'
 import { ProtectedRoute } from '@/app/auth'
+import { useNavigation } from '@/app/routing'
 import { LoaderScreen } from '@/widgets/LoaderScreen'
 import { Container } from '@/shared/components/Container'
 import { Page } from '@/shared/components/Page'
@@ -10,6 +11,7 @@ import styles from './TransactionListPage.module.css'
 
 export function TransactionListPage() {
   const { transactions, isLoading } = useAccountTransactions()
+  const { navigateEditTransactionPage } = useNavigation()
 
   const sortedTransactions = sortTransactionsByDescendingDate(transactions)
 
@@ -25,6 +27,7 @@ export function TransactionListPage() {
               <TransactionList 
                 transactions={sortedTransactions} 
                 groupingType={transactionGroupTypeWeeks}
+                onClickTransaction={transaction => () => navigateEditTransactionPage(transaction.id)}
               />
             )}
           </Container>
