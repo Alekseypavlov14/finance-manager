@@ -20,7 +20,7 @@ export function getBalanceChartData({ transactions, currencies, rates, dateRange
 
   const statisticGroups = new Array(statisticsGroupsAmount).fill(0).map((_, index) => {
     const relatedTransactions = transactions.filter(transaction => (
-      transaction.date < dateRange.min + index * interval &&
+      transaction.date < dateRange.min + interval * (index + 1) &&
       transaction.date <= dateRange.max
     ))
 
