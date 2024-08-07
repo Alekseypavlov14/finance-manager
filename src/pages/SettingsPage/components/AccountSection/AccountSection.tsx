@@ -1,12 +1,14 @@
 import { SettingsSection, SettingsSectionContent, SettingsSectionTitle } from '@/widgets/SettingsSection'
+import { deleteAccountAndUserData } from '@/features/accounts'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import { deleteAccount, signOut } from '@/app/auth'
 import { handleHTTPException } from '@/shared/utils/exception'
 import { Popconfirm, Button } from 'antd'
 import { useNotifications } from '@/features/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { defaultHandler } from '@oleksii-pavlov/error-handling'
 import { useNavigation } from '@/app/routing'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
+import { signOut } from '@/app/auth'
 
 export function AccountSection() {
   const { navigateLoginPage, navigateSignUpPage } = useNavigation()
@@ -18,11 +20,12 @@ export function AccountSection() {
   }
 
   function deleteAccountHandler() {
-    deleteAccount()
+    deleteAccountAndUserData()
       .catch(handleHTTPException({
         401: () => errorMessage('You are not authorized'),
         404: () => errorMessage('Your account is not found'),
         500: () => errorMessage('Something went wrong'),
+        [defaultHandler]: () => errorMessage('Something went wrong'),
       }))
       .then(signOut)
       .then(navigateSignUpPage)
