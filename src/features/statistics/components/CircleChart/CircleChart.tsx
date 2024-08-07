@@ -1,10 +1,11 @@
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent'
 import { chartDataEntryValueKey, colors } from '../../constants'
 import { DataKey, LayoutType } from 'recharts/types/util/types'
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
-import { Tooltip } from '../Tooltip'
+import { textPrimary } from '@/app/themes'
+import sharedStyles from '../shared-styles.module.css'
 
 interface CircleChartProps<T extends ChartDataEntry> extends ChartSettings<T> {
   align?: HorizontalAlignmentType
@@ -48,6 +49,8 @@ export function CircleChart<T extends ChartDataEntry>({
         </Pie>
 
         <Tooltip 
+          wrapperClassName={sharedStyles.Tooltip}
+          itemStyle={{ color: textPrimary }}
           formatter={formatTooltipValue} 
           separator='&nbsp;&asymp;&nbsp;'
         />

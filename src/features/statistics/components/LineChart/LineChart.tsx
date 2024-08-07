@@ -1,9 +1,9 @@
-import { ResponsiveContainer, LineChart as RechartsLineChart, XAxis, YAxis, Line } from 'recharts'
+import { ResponsiveContainer, LineChart as RechartsLineChart, XAxis, YAxis, Line, Tooltip } from 'recharts'
 import { chartDataEntryLabelKey, chartDataEntryValueKey, chartVerticalMargin } from '../../constants'
 import { ChartDataEntry } from '../../types/chart-data-entry'
 import { ChartSettings } from '../../types/chart-settings'
-import { Tooltip } from '../Tooltip'
 import { DataKey } from 'recharts/types/util/types'
+import sharedStyles from '../shared-styles.module.css'
 
 interface LineChartProps<T extends ChartDataEntry> extends ChartSettings<T> {}
 
@@ -51,6 +51,7 @@ export function LineChart<T extends ChartDataEntry>({
         />
 
         <Tooltip 
+          wrapperClassName={sharedStyles.Tooltip}
           formatter={formatTooltipValue}
           cursor={{ opacity: 0.4 }}
         />

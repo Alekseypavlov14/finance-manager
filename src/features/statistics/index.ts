@@ -1,10 +1,8 @@
 export { ChartContainer } from './components/ChartContainer'
 
 export { CircleChart } from './components/CircleChart'
-export { BarChart } from './components/BarChart'
 export { LineChart } from './components/LineChart'
-
-export { Tooltip } from './components/Tooltip'
+export { BarChart } from './components/BarChart'
 
 export * from './charts/currencies-balance'
 export * from './charts/expenses'
