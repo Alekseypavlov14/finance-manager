@@ -3,10 +3,10 @@ import { DAYS_PER_WEEK } from '@/shared/constants'
 import { DateTime } from '@oleksii-pavlov/date-time'
 
 export function getWeekGroupLabelByIndex(index: number): string {
-  const firstDayOfWeek = new DateTime().normalizeDate().getFirstDayOfWeek()
+  const firstDayOfWeek = new DateTime().normalizeDate().getFirstDayOfWeek(1)
 
-  const firstDayOfGivenWeek = firstDayOfWeek.getDateTimeBefore({ days: DAYS_PER_WEEK * index }).getDateTimeAfter({ days: 1 })
-  const lastDayOfGivenWeek = firstDayOfGivenWeek.getLastDayOfWeek().getDateTimeAfter({ days: 1 })
+  const firstDayOfGivenWeek = firstDayOfWeek.getDateTimeBefore({ days: DAYS_PER_WEEK * index })
+  const lastDayOfGivenWeek = firstDayOfGivenWeek.getLastDayOfWeek(1)
 
   const formatter = isDateFromTheSameYear(firstDayOfGivenWeek) && isDateFromTheSameYear(lastDayOfGivenWeek)
     ? formatFullDateWithoutYear
