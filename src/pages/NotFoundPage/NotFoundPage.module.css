@@ -1,0 +1,14 @@
+/* .NotFoundPage {} */
+
+.Center {
+  gap: 0px;
+}
+
+.RedirectLink {
+  padding: 0px;
+  padding-right: 0.2em;
+  color: var(--text-primary);
+}
+.RedirectLink:hover {
+  color: var(--text-secondary) !important;
+}
