@@ -4,11 +4,30 @@
   gap: 0px;
 }
 
+.Title {
+  display: flex;
+  align-items: center;
+
+  font-size: 20px;
+  font-weight: 300;
+  gap: 0.1em;
+}
+
+.ExceptionCode {
+  font-size: 1.5em;
+}
+.Separator {
+  opacity: 0.8;
+}
+
 .RedirectLink {
   padding: 0px;
   padding-right: 0.2em;
-  color: var(--text-primary);
+
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-size: 16px;
 }
 .RedirectLink:hover {
-  color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
 }

@@ -12,7 +12,14 @@ export function NotFoundPage() {
   return (
     <Page>
       <Center className={styles.Center}>
-        <Headline level={5}>This page is not found</Headline>
+        <Headline
+          className={styles.Title} 
+          level={5}
+        >
+          <span className={styles.ExceptionCode}>404</span>&nbsp;
+          <span className={styles.Separator}>|</span>&nbsp;
+          <span className={styles.TitleText}>This page is not found</span>
+        </Headline>
 
         <Button
           className={styles.RedirectLink}
