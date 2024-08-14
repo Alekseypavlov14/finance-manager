@@ -22,7 +22,7 @@
     "@oleksii-pavlov/desirable": "^1.1.1",
     "@oleksii-pavlov/error-handling": "^1.0.0",
     "@oleksii-pavlov/ranges": "^1.0.0",
-    "@oleksii-pavlov/storages": "^1.0.0",
+    "@oleksii-pavlov/storages": "^1.1.1",
     "antd": "^5.19.4",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
