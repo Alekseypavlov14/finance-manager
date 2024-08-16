@@ -1,0 +1,22 @@
+{
+  "name": "Finance Manager | Control your money!",
+  "short_name": "Finance Manager",
+  "description": "An app to manage your finances efficiently",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#222236",
+  "theme_color": "#F4CE14",
+  "icons": [
+    {
+      "src": "logo-40x40.svg",
+      "sizes": "40x40",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "40x40",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["finance", "productivity", "tools"]
+}
