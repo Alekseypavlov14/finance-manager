@@ -29,6 +29,8 @@ export function useExpensesChartData(): ExpensesEntry[] {
         max: new DateTime()
           .normalizeDate()
           .getLastDayOfWeek(1)
+          .getDateTimeAfter({ days: 1 })
+          .getDateTimeBefore({ milliseconds: 1 })
           .getTimeInMilliseconds()
       },
       interval: DAYS_PER_WEEK * DAY_IN_MILLISECONDS,
