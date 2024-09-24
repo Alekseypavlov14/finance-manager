@@ -17,7 +17,7 @@ export interface GetCurrencyBalanceParams {
 }
 
 export function getCurrenciesBalanceChartData({ transactions, currencies, rates }: GetCurrencyBalanceParams): CurrenciesBalanceEntry[] {
-  const transactionsWithDefinedCurrency = transactions.filter(transaction => transaction.money.received.currencyId !== null && transaction.money.lost.currencyId !== null)
+  const transactionsWithDefinedCurrency = transactions.filter(transaction => transaction.money.received.currencyId !== null || transaction.money.lost.currencyId !== null)
   const transactionGroupedByCurrency = groupBy(transactionsWithDefinedCurrency, transaction => [transaction.money.received.currencyId, transaction.money.lost.currencyId])
 
   const chartDataEntries: Nullable<CurrenciesBalanceEntry>[] = transactionGroupedByCurrency.map<Nullable<CurrenciesBalanceEntry>>((group) => {

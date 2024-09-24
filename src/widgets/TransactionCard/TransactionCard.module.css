@@ -30,5 +30,5 @@
 }
 
 .Exchange .TransactionMoney {
-  color: var(--primary-color);
+  color: var(--text-secondary);
 }
