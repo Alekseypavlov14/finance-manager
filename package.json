@@ -21,6 +21,7 @@
     "@oleksii-pavlov/deep-merge": "^1.2.3",
     "@oleksii-pavlov/desirable": "^1.1.1",
     "@oleksii-pavlov/error-handling": "^1.0.0",
+    "@oleksii-pavlov/forms": "^1.1.4",
     "@oleksii-pavlov/ranges": "^1.0.0",
     "@oleksii-pavlov/storages": "^1.1.1",
     "antd": "^5.19.4",
