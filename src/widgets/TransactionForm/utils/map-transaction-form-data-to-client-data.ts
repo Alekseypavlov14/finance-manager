@@ -7,8 +7,14 @@ export function mapTransactionFormDataToClientData(formData: TransactionFormData
     description: formData.description,
     date: formData.date,
     money: {
-      amount: formData.amount,
-      currencyId: formData.currencyId,
+      received: {
+        amount: formData.receivedAmount,
+        currencyId: formData.receivedCurrencyId
+      },
+      lost: {
+        amount: formData.lostAmount,
+        currencyId: formData.lostCurrencyId
+      }
     }
   })
 }

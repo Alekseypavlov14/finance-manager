@@ -28,3 +28,7 @@
 .Withdraw .TransactionMoney {
   color: var(--text-secondary);
 }
+
+.Exchange .TransactionMoney {
+  color: var(--primary-color);
+}

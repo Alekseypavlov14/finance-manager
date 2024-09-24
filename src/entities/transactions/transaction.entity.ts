@@ -8,7 +8,10 @@ export interface TransactionEntity extends Entity {
   userId: Nullable<Id>
   type: TransactionType
   description: string
-  money: TransactionMoney
+  money: {
+    received: TransactionMoney
+    lost: TransactionMoney
+  }
   date: number
 }
 

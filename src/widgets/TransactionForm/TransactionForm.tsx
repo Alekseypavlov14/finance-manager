@@ -12,6 +12,7 @@ import { Headline } from '@/shared/components/Headline'
 import dayjs from 'dayjs'
 import styles from './TransactionForm.module.css'
 import clsx from 'clsx'
+import { isTransactionTypeLosing, isTransactionTypeReceiving } from '@/entities/transactions'
 
 export type TransactionFormMode = 'create' | 'edit'
 
@@ -83,36 +84,75 @@ export function TransactionForm({ mode, onSubmit, initialValue = {} }: Transacti
               />
             </Space>
 
-            <Space 
-              className={styles.FieldBlock}
-              direction='vertical'
-              size='small'
-            >
-              <Headline level={5}>Amount:</Headline>
+            {isTransactionTypeReceiving(values.type) ? (
+              <>
+                <Space 
+                  className={styles.FieldBlock}
+                  direction='vertical'
+                  size='small'
+                >
+                  <Headline level={5}>Receiving amount:</Headline>
+  
+                  <InputNumber
+                    value={values.receivedAmount}
+                    onChange={value => setFieldValue('receivedAmount', value)}
+                    className={styles.Control}
+                    status={(errors.receivedAmount && touched.receivedAmount) ? 'error' : ''}
+                  />
+                </Space>
+  
+                <Space
+                  className={styles.FieldBlock}
+                  direction='vertical'
+                  size='small'
+                >
+                  <Headline level={5}>Receiving currency:</Headline>
+  
+                  <Select 
+                    value={values.receivedCurrencyId}
+                    onChange={(value) => setFieldValue('receivedCurrencyId', value)}
+                    options={currencyOptions}
+                    className={styles.Control}
+                    status={(errors.receivedCurrencyId && touched.receivedCurrencyId) ? 'error' : ''}
+                  />
+                </Space>
+              </>
+            ) : null}
 
-              <InputNumber
-                value={values.amount}
-                onChange={value => setFieldValue('amount', value)}
-                className={styles.Control}
-                status={(errors.amount && touched.amount) ? 'error' : ''}
-              />
-            </Space>
-
-            <Space
-              className={styles.FieldBlock}
-              direction='vertical'
-              size='small'
-            >
-              <Headline level={5}>Currency:</Headline>
-
-              <Select 
-                value={values.currencyId}
-                onChange={(value) => setFieldValue('currencyId', value)}
-                options={currencyOptions}
-                className={styles.Control}
-                status={(errors.currencyId && touched.currencyId) ? 'error' : ''}
-              />
-            </Space>
+            {isTransactionTypeLosing(values.type) ? (
+              <>
+                <Space 
+                  className={styles.FieldBlock}
+                  direction='vertical'
+                  size='small'
+                >
+                  <Headline level={5}>Lost amount:</Headline>
+  
+                  <InputNumber
+                    value={values.lostAmount}
+                    onChange={value => setFieldValue('lostAmount', value)}
+                    className={styles.Control}
+                    status={(errors.lostAmount && touched.lostAmount) ? 'error' : ''}
+                  />
+                </Space>
+  
+                <Space
+                  className={styles.FieldBlock}
+                  direction='vertical'
+                  size='small'
+                >
+                  <Headline level={5}>Lost currency:</Headline>
+  
+                  <Select 
+                    value={values.lostCurrencyId}
+                    onChange={(value) => setFieldValue('lostCurrencyId', value)}
+                    options={currencyOptions}
+                    className={styles.Control}
+                    status={(errors.lostCurrencyId && touched.lostCurrencyId) ? 'error' : ''}
+                  />
+                </Space>
+              </>
+            ) : null}
   
             <Space
               className={styles.FieldBlock}

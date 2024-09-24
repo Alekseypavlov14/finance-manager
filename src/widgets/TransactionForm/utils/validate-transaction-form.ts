@@ -5,7 +5,9 @@ import { TransactionFormData } from '../types/transaction-form-data'
 export const validateTransactionForm = createFormValidation<TransactionFormData>({
   type: isOneOf([transactionDepositType, transactionWithdrawType]),
   description: skip,
-  amount: multiple([isNumber, isNot(0)]),
-  currencyId: multiple([isNot(null), isNotEmptyString]),
+  receivedAmount: multiple([isNumber, isNot(0)]),
+  receivedCurrencyId: multiple([isNot(null), isNotEmptyString]),
+  lostAmount: multiple([isNumber, isNot(0)]),
+  lostCurrencyId: multiple([isNumber, isNot(0)]),
   date: isNumber
 })

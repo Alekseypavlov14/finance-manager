@@ -10,4 +10,7 @@ export { transactionRepository } from './transactions.repository'
 export { formatAsMoney } from './utils/format-as-money'
 export { roundAsMoney } from './utils/round-as-money'
 
+export * from './utils/is-transaction-type-receiving'
+export * from './utils/is-transaction-type-losing'
+
 export * from './constants'

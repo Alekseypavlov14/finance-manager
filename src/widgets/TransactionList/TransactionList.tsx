@@ -58,8 +58,10 @@ export function TransactionList({
             {group.transactions.map(transaction => (
               <TransactionCard
                 type={transaction.type}
-                amount={transaction.money.amount}
-                currency={getCurrencyLabel(transaction.money.currencyId)}
+                receivedAmount={transaction.money.received.amount}
+                receivedCurrency={getCurrencyLabel(transaction.money.received.currencyId)}
+                lostAmount={transaction.money.lost.amount}
+                lostCurrency={getCurrencyLabel(transaction.money.lost.currencyId)}
                 description={transaction.description}
                 date={transaction.date}
                 key={transaction.id}

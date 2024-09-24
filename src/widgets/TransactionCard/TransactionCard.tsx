@@ -1,4 +1,4 @@
-import { formatAsMoney, transactionDepositType, TransactionType, transactionWithdrawType } from '@/entities/transactions'
+import { formatAsMoney, transactionDepositType, transactionExchangeType, TransactionType, transactionWithdrawType } from '@/entities/transactions'
 import { formatFullDateWithoutYear } from '@/shared/utils/date-time'
 import { TextPreview } from '@/shared/components/TextPreview'
 import styles from './TransactionCard.module.css'
@@ -6,8 +6,10 @@ import clsx from 'clsx'
 
 interface TransactionCardProps {
   type: TransactionType
-  amount: number
-  currency: string
+  receivedCurrency: string
+  receivedAmount: number
+  lostCurrency: string
+  lostAmount: number
   description: string
   date: number
   onClick?: () => void
@@ -15,8 +17,10 @@ interface TransactionCardProps {
 
 export function TransactionCard({
   type,
-  amount,
-  currency,
+  receivedCurrency,
+  receivedAmount,
+  lostCurrency,
+  lostAmount,
   description,
   date,
   onClick,
@@ -24,11 +28,19 @@ export function TransactionCard({
   const transactionSign = {
     [transactionDepositType]: '+',
     [transactionWithdrawType]: '-',
+    [transactionExchangeType]: '',
   }[type]
 
   const transactionModifierClass = {
     [transactionDepositType]: styles.Deposit,
     [transactionWithdrawType]: styles.Withdraw,
+    [transactionExchangeType]: styles.Exchange,
+  }[type]
+
+  const transactionMoneyRowGetter = {
+    [transactionDepositType]: () => `${transactionSign}${formatAsMoney(receivedAmount)} ${receivedCurrency}`,
+    [transactionWithdrawType]: () => `${transactionSign}${formatAsMoney(lostAmount)} ${lostCurrency}`,
+    [transactionExchangeType]: () => `+${formatAsMoney(receivedAmount)} ${receivedCurrency} -${formatAsMoney(lostAmount)} ${lostCurrency}`,
   }[type]
 
   return (
@@ -38,7 +50,7 @@ export function TransactionCard({
     >
       <div className={styles.TransactionHeader}>
         <div className={styles.TransactionMoney}>
-          {transactionSign}{formatAsMoney(amount)} {currency}
+          {transactionMoneyRowGetter()}
         </div>
 
         <div className={styles.TransactionDate}>
