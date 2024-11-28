@@ -50,7 +50,7 @@ export function StatisticsPage() {
     
               <CircleChart
                 data={currenciesBalanceData} 
-                height={220}
+                height={260}
                 align='center'
                 verticalAlign='bottom'
                 layout='vertical'
