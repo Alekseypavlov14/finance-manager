@@ -3,6 +3,7 @@ import { CurrencyEntity } from '@/entities/currency'
 import { ExpensesEntry } from './data-type'
 import { RangeValues } from '@oleksii-pavlov/ranges'
 import { RateEntity } from '@/entities/rates'
+import { DateTime } from '@oleksii-pavlov/date-time'
 import { sum } from '@/shared/utils/numbers'
 
 export interface GetExpensesChartParams {
@@ -28,7 +29,9 @@ export function getExpensesChartData({ transactions, currencies, rates, dateRang
       transaction.date <= dateRange.max
     ))
 
-    const groupDate = dateRange.min + index * interval
+    const groupDate = new DateTime(dateRange.min).getDateTimeAfter({
+      milliseconds: index * interval
+    }).getTimeInMilliseconds()
 
     const transactionsAmountInUSD = relatedTransactions.map(transaction => getTransactionAmountInUSD(transaction, currencies, rates))
     const totalGroupAmountInUSD = roundAsMoney(sum(...transactionsAmountInUSD))
