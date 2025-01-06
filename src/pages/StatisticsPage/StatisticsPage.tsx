@@ -1,4 +1,4 @@
-import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, getBalancedShownTicks, LineChart, useBalanceChartData, useIncomesChartData } from '@/features/statistics'
+import { useCurrenciesBalanceChartData, CircleChart, useExpensesChartData, BarChart, getBalancedShownTicks, LineChart, useBalanceChartData, useIncomesChartData, useProfitsChartData } from '@/features/statistics'
 import { roundAsMoney, useAccountTransactions } from '@/entities/transactions'
 import { failureColor, successColor } from '@/app/themes'
 import { NoTransactionsScreen } from '@/widgets/NoTransactionsScreen'
@@ -10,11 +10,13 @@ import { Container } from '@/shared/components/Container'
 import { Headline } from '@/shared/components/Headline'
 import { Page } from '@/shared/components/Page'
 import styles from './StatisticsPage.module.css'
+import { primaryColor } from '@/app/themes/constants'
 
 export function StatisticsPage() {
   const currenciesBalanceData = useCurrenciesBalanceChartData()
   const expensesData = useExpensesChartData()
   const incomesData = useIncomesChartData()
+  const profitsData = useProfitsChartData()
   const balanceData = useBalanceChartData()
 
   const { transactions, isLoading } = useAccountTransactions()
@@ -85,6 +87,21 @@ export function StatisticsPage() {
                 dataKey='incomes'
                 height={200}
                 color={successColor}
+                formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
+                shownTicks={getBalancedShownTicks(incomesData.length, 3)}
+              />
+            </div>
+
+            <div className={styles.StatisticsBlock}>
+              <Headline level={4} className={styles.Headline}>
+                Your profits
+              </Headline>
+    
+              <BarChart 
+                data={profitsData} 
+                dataKey='profits'
+                height={200}
+                color={primaryColor}
                 formatTooltipValue={value => `${value} ${USD_CURRENCY_CODE}`}
                 shownTicks={getBalancedShownTicks(incomesData.length, 3)}
               />

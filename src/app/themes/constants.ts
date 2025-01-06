@@ -15,5 +15,6 @@ export const themesCSSClasses: ThemeCSSClass[] = [lightThemeCSSClass, darkThemeC
 
 export const successColor = 'var(--success-color)'
 export const failureColor = 'var(--failure-color)'
+export const primaryColor = 'var(--primary-color)'
 
 export const textPrimary = 'var(--text-primary)'
