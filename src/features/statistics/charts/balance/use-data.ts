@@ -15,19 +15,6 @@ export function useBalanceChartData(): BalanceChartEntry[] {
 
   const [chartData, setChartData] = useState<BalanceChartEntry[]>([])
 
-  console.log({
-    min: new DateTime()
-      .normalizeDate()
-      .getFirstDayOfWeek(1)
-      .getDateTimeBefore({ days: DAYS_PER_WEEK * 8 })
-      .getDate(),
-    max: new DateTime()
-      .normalizeDate()
-      .getFirstDayOfWeek(1)
-      .getDateTimeAfter({ days: DAYS_PER_WEEK })
-      .getDate()
-  })
-
   useEffect(() => {
     setChartData(getBalanceChartData({
       transactions,

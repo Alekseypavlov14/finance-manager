@@ -17,7 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@oleksii-pavlov/collections": "^1.1.0",
-    "@oleksii-pavlov/date-time": "^1.2.0",
+    "@oleksii-pavlov/date-time": "^1.3.2",
     "@oleksii-pavlov/deep-merge": "^1.2.3",
     "@oleksii-pavlov/desirable": "^1.1.1",
     "@oleksii-pavlov/error-handling": "^1.0.0",
